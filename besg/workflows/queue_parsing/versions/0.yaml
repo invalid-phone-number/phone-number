@@ -1,0 +1,210 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-1243351a-1894-4098-936c-83111b6288aa
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: cur_parsing
+- edge_id: input-7ae8f18b-7d88-4cbf-9c72-a1720e0cc81a
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: for_loop_select
+- edge_id: for_loop_select_start-d58f61b2-1c48-4881-90d2-453ef7a04e8b
+  source:
+    handle_id: null
+    workflow_module_instance_id: for_loop_select_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: aggregate
+- edge_id: edge_aggregate-for_loop_select_end-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: aggregate
+  target:
+    handle_id: null
+    workflow_module_instance_id: for_loop_select_end
+- edge_id: input-3068baf7-4d84-4261-8154-d1299a57aee7
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: edge_input-xxxx-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxxx
+- edge_id: input-b7eacb6e-ebb9-484a-ac37-d97cd9f7e765
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaa
+- edge_id: input-526bc3e0-4a0f-4197-83a7-451e153edb52
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaas
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: false
+  name: cur parsing
+  properties:
+    body: '{"87767676786778678687878768":"value","ggg":"87767676786778678687878768"}'
+    cookies: []
+    header:
+    - name: Content-Type
+      value: application/json
+    method: POST
+    other_parameters: []
+    query_parameters: []
+    url: http://localhost:2006/workspaces/2232/workflows/7f93da11-26e2-469a-9efb-240a5bc8058d:latest_draft/triggers/post_trigger/run_wait_result
+  workflow_module_instance_id: cur_parsing
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: For Loop Select
+  properties:
+    break_on_error: true
+    list:
+    - '1'
+    - '2'
+  workflow_module_instance_id: for_loop_select
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: for_loop_select
+  name: Start
+  properties: {}
+  workflow_module_instance_id: for_loop_select_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: for_loop_select
+  name: End
+  properties: {}
+  workflow_module_instance_id: for_loop_select_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: for_loop_select
+  name: aggregate
+  properties:
+    data: "{\n    \"start\": {{ for_loop_select_start }}\n}"
+  workflow_module_instance_id: aggregate
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties:
+    data: "{\n    \"arst\": \"\",\n    \"arst\": \"32\"\n}"
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+  name: xxxx
+  properties:
+    lists: "[\n  a\",\n  \"b\",\n  \"{{ input }}\",\n  \"c\",\n  \"a\"\n]"
+    recursive: false
+  workflow_module_instance_id: xxxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+  name: aaaa
+  properties:
+    lists: '["x]'
+    recursive: false
+  workflow_module_instance_id: aaaa
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-javascript_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: aaaas
+  properties:
+    context:
+    - name: ars
+      value: '{{ input.body.my_int }}'
+    script: "function main(WORKFLOW_CONTEXT) {\r\n    return WORKFLOW_CONTEXT[\"ars\"\
+      ]\r\n}"
+  workflow_module_instance_id: aaaas
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

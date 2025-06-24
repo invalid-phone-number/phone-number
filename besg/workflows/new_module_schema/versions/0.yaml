@@ -1,0 +1,201 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-8fb28667-2e28-468e-aebf-66b525e07c09
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaa
+- edge_id: input-d090dec8-b7dd-41df-bfce-88a161974faa
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaaa
+- edge_id: input-1ee01a77-1594-46d4-b173-adbf2eb33d48
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+- edge_id: input-ea9da16d-725a-4321-8f2c-b27a5f1a9320
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaas
+- edge_id: input-2c82f059-31ca-414f-9796-02eb6bff8dc2
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: sssarst
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-stop-1
+  module_options:
+    enable_error_handling: false
+    patches: {}
+  name: Stop
+  properties: {}
+  workflow_module_instance_id: stop
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+    patches: {}
+  name: Python
+  properties:
+    context: []
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    \r\n    return x"
+  workflow_module_instance_id: python
+- connections:
+  - connection_app_type: hubspot
+    connection_management_type: managed
+    connection_name: Hubspot Connection
+  description: null
+  error_handling_strategy: null
+  module_id: hubspot-archive_records_standard_objects-3
+  module_options:
+    enable_error_handling: false
+  name: aaaa
+  properties:
+    object_type:
+      id: Courses
+      label: Courses
+    records: "[\n  \"1\",\n  \"2\",\n  \"3\"\n]"
+  workflow_module_instance_id: aaaa
+- connections:
+  - connection_app_type: airtable
+    connection_management_type: managed
+    connection_name: Airtable - Silyas
+  description: null
+  error_handling_strategy: null
+  module_id: airtable-create_records-1
+  module_options:
+    enable_error_handling: false
+  name: aaaaa
+  properties:
+    base:
+      id: app92t5vAw1VKAFDN
+      label: Untitled Base
+    records: "[\n  {\n    \"fields\": {\n      \"property1\": \"value1\",\n      \"\
+      property2\": \"value2\"\n    }\n  }\n]"
+    table:
+      id: tblEaEoCu4O94xPqq
+      label: Table 1
+  workflow_module_instance_id: aaaaa
+- connections:
+  - connection_app_type: airtable
+    connection_management_type: managed
+    connection_name: Airtable - Silyas
+  description: st
+  error_handling_strategy: null
+  module_id: airtable-create_records-1
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    base:
+      id: appffk32GHlts2um7
+      label: Second Base
+    records: "[\n  {\n    \"fields\": {\n      \"property1\": \"value1\",\n      \"\
+      property2\": \"value2\"\n    }\n  }\n]"
+    table:
+      id: tbluxRcUif6ypgRGM
+      label: Table 1
+  workflow_module_instance_id: arst
+- connections:
+  - connection_app_type: postgres_heroku
+    connection_management_type: managed
+    connection_name: My Connection
+  description: null
+  error_handling_strategy: null
+  module_id: postgres-delete-1
+  module_options:
+    enable_error_handling: false
+  name: aaaas
+  properties:
+    matching_columns: '["id", "name", "city"]'
+    records: "[\n {\"id\": 1, \"name\": \"John Doe\", \"city\": \"City X\"}, \n {\"\
+      id\": 2, \"name\": \"Jane Doe\", \"city\": \"City Y\"}, \n {\"id\": 3, \"name\"\
+      : \"Franco\", \"city\": \"City Z\"}\n]"
+    schema_name: public
+    table_name: a
+  workflow_module_instance_id: aaaas
+- connections:
+  - connection_app_type: airtable
+    connection_management_type: managed
+    connection_name: Airtable - Silyas
+  description: null
+  error_handling_strategy: null
+  module_id: airtable-list_records-1
+  module_options:
+    enable_error_handling: false
+  name: sssarst
+  properties:
+    additional_fields: "{\n    \"view\": \"grid view\" ,\n    \"cellFormat\": \"markdown\"\
+      \ \n}"
+    base:
+      id: appffk32GHlts2um7
+      label: Second Base
+    fields: "[\n    \"field_id1\",\n    \"field_id2\"\n]"
+    max_records: 1000
+    page_size: 100
+    sort: "[\n    { \"field\": \"field_id1\", \"direction\": \"asc\" }, \n    { \"\
+      field\": \"field_id2\", \"direction\": \"desc\" }\n]"
+    table:
+      id: tbluxRcUif6ypgRGM
+      label: Table 1
+  workflow_module_instance_id: sssarst
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

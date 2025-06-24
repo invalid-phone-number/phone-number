@@ -1,0 +1,135 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: xy-edge__inputoutput-arstinput
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arsttx
+- edge_id: edge_arst-archive_hubspot_records-error-input
+  source:
+    handle_id: error
+    workflow_module_instance_id: arsttx
+  target:
+    handle_id: null
+    workflow_module_instance_id: archive_hubspot_records
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections:
+  - connection_app_type: hubspot
+    connection_management_type: managed
+    connection_name: My Test Hubspot Connection
+  description: null
+  error_handling_strategy: null
+  module_id: hubspot-archive_records_standard_objects-3
+  module_options:
+    enable_error_handling: false
+    patches:
+      properties.options.properties.object_type.enum:
+      - id: appointments
+        label: Appointments
+      - id: calls
+        label: Calls
+      - id: commerce_payments
+        label: Commerce Payments
+      - id: communications
+        label: Communications
+      - id: companies
+        label: Companies
+      - id: contacts
+        label: Contacts
+      - id: Courses
+        label: Courses
+      - id: deals
+        label: Deals
+      - id: emails
+        label: Emails
+      - id: goal_targets
+        label: Goal Targets
+      - id: invoices
+        label: Invoices
+      - id: line_items
+        label: Line Items
+      - id: listings
+        label: Listings
+      - id: meetings
+        label: Meetings
+      - id: notes
+        label: Notes
+      - id: postal_mail
+        label: Postal Mail
+      - id: products
+        label: Products
+      - id: quotes
+        label: Quotes
+      - id: services
+        label: Services
+      - id: subscriptions
+        label: Subscriptions
+      - id: tasks
+        label: Tasks
+      - id: tickets
+        label: Tickets
+  name: Archive Hubspot Records
+  properties:
+    object_type:
+      id: communications
+      label: Communications
+    records: "[\n  \"1\",\n  \"2\",\n  \"3\"\n]"
+  workflow_module_instance_id: archive_hubspot_records
+- connections:
+  - connection_app_type: hubspot
+    connection_management_type: managed
+    connection_name: My Hubspot Connection
+  description: null
+  error_handling_strategy: null
+  module_id: hubspot-archive_records_standard_objects-2
+  module_options:
+    enable_error_handling: true
+  name: arsttx
+  properties:
+    object_type:
+      id: commerce_payments
+      label: Commerce Payments
+    records: "[\n  \"1\",\n  \"2\",\n  \"3\"\n]"
+  workflow_module_instance_id: arsttx
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

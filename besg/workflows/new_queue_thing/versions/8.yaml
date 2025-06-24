@@ -1,0 +1,80 @@
+edges:
+- edge_id: edge_post_trigger-input-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-3d3949b5-8d69-44d1-9ec4-7922990259a7
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: 78d7144c-5195-49ac-8bb3-32b8fefe62d1-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: cron_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties:
+    data: Hello
+  workflow_module_instance_id: xxx
+- connections: []
+  description: x
+  error_handling_strategy: null
+  module_id: system-cron_schedule_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: Cron Trigger
+  properties:
+    cron:
+      cron_schedule: '* * * * *'
+      is_shared_with_workspace: false
+      start_time: '2025-04-29T14:39:51.842Z'
+  workflow_module_instance_id: cron_trigger
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

@@ -1,0 +1,172 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: edge_input-test-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test
+- edge_id: edge_input-python-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: python
+- edge_id: input-7aaf92f8-12db-4650-8302-eec482891819
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: rs
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+  name: node context
+  properties:
+    lists:
+    - '{{ input }}{{ input }}'
+    recursive: false
+  workflow_module_instance_id: node_context
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: r
+  properties:
+    break_on_error: false
+    list:
+    - '1'
+  workflow_module_instance_id: r
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: r
+  name: Start
+  properties: {}
+  workflow_module_instance_id: r_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: r
+  name: End
+  properties: {}
+  workflow_module_instance_id: r_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: null
+  name: test
+  properties:
+    data: "{% set pg_count = 1 %}\n{% set bq_count = 2 %}\n{% set sync_percentage\
+      \ = (bq_count / pg_count * 100) | round(2) %}\n\n{\n    \"postgres_count\":\
+      \ {{ pg_count }},\n    \"bigquery_count\": {{ bq_count }},\n    \"sync_percentage\"\
+      : {{ sync_percentage }}\n}"
+  workflow_module_instance_id: test
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: null
+  name: python
+  properties:
+    context:
+    - {}
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    ffs\r\n    return x"
+  workflow_module_instance_id: python
+- connections:
+  - connection_app_type: airtable
+    connection_management_type: managed
+    connection_name: Airtable - Silyas
+  description: null
+  error_handling_strategy: null
+  module_id: airtable-create_records-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: null
+  name: xxx
+  properties:
+    base:
+      id: appIjvvdlXFATkA5C
+      label: New Base
+    records: "[\n  {\n    \"fields\": {\n      \"property1\": \"value1\",\n      \"\
+      property2\": \"value2\"\n    }\n  }\n]"
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-insert_data-2
+  module_options:
+    enable_error_handling: false
+  name: rs
+  properties:
+    data: []
+    workflows_app_queue_id: 7f79ced3-ee0a-442e-845f-d17ccee7e9ef
+  workflow_module_instance_id: rs
+return_workflow_module_instance_ids:
+- test
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

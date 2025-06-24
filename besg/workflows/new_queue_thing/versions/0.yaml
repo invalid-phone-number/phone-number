@@ -1,0 +1,182 @@
+edges:
+- edge_id: edge_xx-test-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: xx
+  target:
+    handle_id: null
+    workflow_module_instance_id: test
+- edge_id: edge_post_trigger-input-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: edge_test-x_end-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: test
+  target:
+    handle_id: null
+    workflow_module_instance_id: x_end
+- edge_id: input-3d3949b5-8d69-44d1-9ec4-7922990259a7
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: edge_input-cccc-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: cccc
+- edge_id: edge_xxx-xxxx-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: xxx
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxxx
+- edge_id: edge_cccc-x-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: cccc
+  target:
+    handle_id: null
+    workflow_module_instance_id: x
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: x
+  properties:
+    break_on_error: true
+    list:
+    - 1
+  workflow_module_instance_id: x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: x
+  name: Start
+  properties: {}
+  workflow_module_instance_id: x_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: x
+  name: End
+  properties: {}
+  workflow_module_instance_id: x_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: x
+  name: xx
+  properties: {}
+  workflow_module_instance_id: xx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: x
+  name: test
+  properties:
+    context: []
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    \r\n    return x"
+  workflow_module_instance_id: test
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties: {}
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: true
+  name: cccc
+  properties: {}
+  workflow_module_instance_id: cccc
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxxx
+  properties: {}
+  workflow_module_instance_id: xxxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-consumer_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    workflows_app_queue_id: c25a5f70-1af2-4e84-9228-17af0366d95c
+  workflow_module_instance_id: arst
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

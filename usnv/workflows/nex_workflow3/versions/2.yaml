@@ -1,0 +1,115 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-99bd0b6f-f3c9-4f7e-9e75-3d6a2a81b8e2
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: xxx-62da29cc-d996-4ddb-97ce-3cc9abac539c
+  source:
+    handle_id: null
+    workflow_module_instance_id: xxx
+  target:
+    handle_id: null
+    workflow_module_instance_id: ccc
+- edge_id: xxx-99b655f7-df15-4365-94e2-2100545b4012
+  source:
+    handle_id: null
+    workflow_module_instance_id: xxx
+  target:
+    handle_id: null
+    workflow_module_instance_id: s
+- edge_id: input-256f7f93-1213-4dde-a118-8af3686cf8ca
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: trsgt
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: xxx
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties:
+    data: '{{ WORKSPACE_VARIABLES.xxx }}'
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-update_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: ccc
+  properties:
+    data: '2'
+    variable_name: xxx
+    variable_value_type: json
+  workflow_module_instance_id: ccc
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-create_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: s
+  properties:
+    data:
+      variable_value: '1'
+      variable_value_type: number
+    variable_name: x
+  workflow_module_instance_id: s
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: trsgt
+  properties: {}
+  workflow_module_instance_id: trsgt
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

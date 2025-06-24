@@ -1,0 +1,49 @@
+edges:
+- edge_id: input-b7eacb6e-ebb9-484a-ac37-d97cd9f7e765
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaa
+- edge_id: a109b700-6aaf-4b0e-9fc4-87ab7866cb9c-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: c
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+  name: aaaa
+  properties:
+    lists: '[{{input.body}}]'
+    recursive: false
+  workflow_module_instance_id: aaaa
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-consumer_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: c
+  properties:
+    workflows_app_queue_id: 4ebda749-7081-45b4-a615-887e87094f59
+  workflow_module_instance_id: c
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

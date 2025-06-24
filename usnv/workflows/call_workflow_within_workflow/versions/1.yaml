@@ -1,0 +1,88 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-3cdcfdfc-a522-4652-81ef-31707a4e3305
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: request_v0
+- edge_id: input-6c6e60cf-406c-4e5b-bbb9-33f74fd941e1
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: request_v2
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: false
+  name: request v0
+  properties:
+    body: '{}'
+    cookies: []
+    header:
+    - name: Content-Type
+      value: application/json
+    method: POST
+    query_parameters: []
+    url: https://usnv.api-dev.workflows.stacksync.com/workspaces/2215/workflows/e3ac177b-bcb9-412e-9233-90cea24ef2db:v0/triggers/post_trigger/run
+  workflow_module_instance_id: request_v0
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: false
+  name: request v2
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+    url: https://usnv.api-dev.workflows.stacksync.com/workspaces/2215/workflows/e3ac177b-bcb9-412e-9233-90cea24ef2db:v2/triggers/post_trigger/run
+  workflow_module_instance_id: request_v2
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

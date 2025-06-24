@@ -1,0 +1,126 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-7ece2dfd-1daa-4f8f-9b45-379468e87c9d
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test
+- edge_id: input-314957ff-5bb4-4876-b3e1-b03374838a0f
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: js
+- edge_id: input-fbfca802-2f12-4a2a-98d0-fed85576b77d
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: py
+- edge_id: edge_py-arst-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: py
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options: {}
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: arstrs
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: false
+    patches: {}
+  name: test
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+  workflow_module_instance_id: test
+- connections: []
+  description: arstarptts
+  error_handling_strategy: null
+  module_id: code-execution-javascript_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: js
+  properties:
+    context: []
+    script: "function maisrtn(WORKFLOW_CONTEXT) {\r\n    x = {\r\n        \"name\"\
+      : \"Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n\
+      \    }\r\n    \r\n    return x\r\n}"
+  workflow_module_instance_id: js
+- connections: []
+  description: stg
+  error_handling_strategy:
+    conditions: []
+    else_condition:
+      retry_count: 0
+      retry_interval: 0
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: py
+  properties:
+    context: []
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    \r\n    return x"
+  workflow_module_instance_id: py
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    lists: []
+    recursive: false
+  workflow_module_instance_id: arst
+return_workflow_module_instance_ids:
+- ''
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

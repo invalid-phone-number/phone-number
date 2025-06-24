@@ -1,0 +1,235 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-043d1aa5-adf6-44f5-a8e4-87e008957ef2
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test_request
+- edge_id: input-18f5b5e5-01e9-4084-8511-6727083b1a82
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test_request2
+- edge_id: input-17a004fd-7324-4405-a8d6-ebcc171b82fd
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: not_failing
+- edge_id: not_failing-09c1147c-2348-42b1-8d0d-48e071f27fa8
+  source:
+    handle_id: null
+    workflow_module_instance_id: not_failing
+  target:
+    handle_id: null
+    workflow_module_instance_id: print3
+- edge_id: edge_not_failing-print3-error-input
+  source:
+    handle_id: error
+    workflow_module_instance_id: not_failing
+  target:
+    handle_id: null
+    workflow_module_instance_id: print3
+- edge_id: input-b7055727-cf95-4678-a1c6-2eb55cf61946
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: complex_failing
+- edge_id: complex_failing-22c4830e-491f-463f-860b-91d2f2f069cc
+  source:
+    handle_id: null
+    workflow_module_instance_id: complex_failing
+  target:
+    handle_id: null
+    workflow_module_instance_id: print4
+- edge_id: edge_complex_failing-complex_failing2-error-input
+  source:
+    handle_id: error
+    workflow_module_instance_id: complex_failing
+  target:
+    handle_id: null
+    workflow_module_instance_id: complex_failing2
+- edge_id: edge_complex_failing2-print5-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: complex_failing2
+  target:
+    handle_id: null
+    workflow_module_instance_id: print5
+- edge_id: edge_test_request-print-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: test_request
+  target:
+    handle_id: null
+    workflow_module_instance_id: print
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: true
+  name: Send Docusign
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+    url: zo.com
+  workflow_module_instance_id: test_request
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: Send Confirmation
+  properties:
+    data: '{{ docusign_pdf }}
+
+
+      IF Exists:[Assigned Agent]'
+  workflow_module_instance_id: print
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: print2
+  properties:
+    data: '{{ test_request2 }}'
+  workflow_module_instance_id: print2
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: true
+  name: Assign to Customer
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+    url: zo.com
+  workflow_module_instance_id: test_request2
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: true
+    patches: {}
+  name: Success Req 1
+  properties:
+    cookies: []
+    header: []
+    method: GET
+    query_parameters: []
+    url: http://www.google.com
+  workflow_module_instance_id: not_failing
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: print3
+  properties:
+    data: '{{ not_failing }}'
+  workflow_module_instance_id: print3
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: true
+  name: Complex Failing
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+    url: zo.com
+  workflow_module_instance_id: complex_failing
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: print4
+  properties: {}
+  workflow_module_instance_id: print4
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: print5
+  properties: {}
+  workflow_module_instance_id: print5
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: false
+  name: Complex Failing2
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+    url: zo.com
+  workflow_module_instance_id: complex_failing2
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

@@ -1,0 +1,204 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: edge_test_llm_model-test-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: test_llm_model
+  target:
+    handle_id: null
+    workflow_module_instance_id: test
+- edge_id: edge_input-test_response-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test_response
+- edge_id: edge_test_response-x-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: test_response
+  target:
+    handle_id: null
+    workflow_module_instance_id: x
+- edge_id: input-e94fb187-d8ac-4b45-a5f8-de94a818a556
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: rrrr
+- edge_id: input-ef26b0ed-81e9-4f86-9569-223aefcd3851
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: testr
+- edge_id: edge_testr-input_data-else-input
+  source:
+    handle_id: else
+    workflow_module_instance_id: testr
+  target:
+    handle_id: null
+    workflow_module_instance_id: input_data
+- edge_id: input-3fb41837-7bc1-4cb2-9510-a18cd7224ae8
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: a
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data:
+      - key: my_int
+        required: false
+        type: string
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: arrrr
+  error_handling_strategy: null
+  module_id: code-execution-javascript_code_execution-1
+  module_options:
+    enable_error_handling: false
+    patches: {}
+  name: test response
+  properties:
+    context:
+    - name: input
+      value: '{{ input.body.my_int }}'
+    script: "function main(WORKFLOW_CONTEXT) {\r\n    return \"904309439430320923480932840923\"\
+      \r\n}"
+  workflow_module_instance_id: test_response
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-stop-1
+  module_options:
+    enable_error_handling: false
+  name: Test
+  properties:
+    default_response: '{{ input.body }}'
+  workflow_module_instance_id: test
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: llm-prompt_llm-1
+  module_options:
+    enable_error_handling: false
+  name: Test LLM Model
+  properties:
+    llm-model: llama_3_8b
+    prompt: 'Tell me about this: {{ input.body }}'
+  workflow_module_instance_id: test_llm_model
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-transform-1
+  module_options:
+    enable_error_handling: true
+  name: x
+  properties:
+    data: "[\n    \"hello\",\n    {{ test_response }},\n    {{ input.body }}\n]"
+    transform_from: string
+    transform_to: json
+  workflow_module_instance_id: x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: Input Data
+  properties:
+    data: 'xxx {{ input.body.my_int }}
+
+      '
+  workflow_module_instance_id: input_data
+- connections: []
+  description: s
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+  name: rrrr
+  properties:
+    lists:
+    - sssss
+    recursive: false
+  workflow_module_instance_id: rrrr
+- connections: []
+  description: rrarr
+  error_handling_strategy: null
+  module_id: system-if_else-1
+  module_options:
+    enable_error_handling: false
+  name: testr
+  properties:
+    conditions:
+    - condition:
+        id: initial-condition-group-id
+        type: group
+        value:
+        - id: initial-condition-value-id
+          operator: is less than or equal to
+          target_value: '{{ input.body.my_int | int }}'
+          type: value
+          value: '0'
+      condition_response: ''
+      handle_id: 0fcd6145-f01c-4c4d-a1d9-04876000889a
+  workflow_module_instance_id: testr
+- connections: []
+  description: rrrs
+  error_handling_strategy: null
+  module_id: code-execution-javascript_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    context:
+    - name: srrs
+      value: rrrrsrsr
+    script: "function main(WORKFLOW_CONTEXT) {\r\n    x = {\r\n        \"name\": \"\
+      Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n  \
+      \  }\r\n    \r\n    return x\n}"
+  workflow_module_instance_id: arst
+return_workflow_module_instance_ids:
+- input_data
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

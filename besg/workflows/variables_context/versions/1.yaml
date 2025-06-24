@@ -1,0 +1,192 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: y_start-904a590b-169b-4837-8202-7a5f2bb55add
+  source:
+    handle_id: null
+    workflow_module_instance_id: y_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: wait
+- edge_id: wait-dec2254d-3f27-4bb7-adaf-f3353bfe00e1
+  source:
+    handle_id: null
+    workflow_module_instance_id: wait
+  target:
+    handle_id: null
+    workflow_module_instance_id: agg
+- edge_id: wait-6de22bd7-197d-4421-9c38-90d021cd88b9
+  source:
+    handle_id: null
+    workflow_module_instance_id: wait
+  target:
+    handle_id: null
+    workflow_module_instance_id: test
+- edge_id: test_start-94d87f5a-d676-493f-a027-a0dca1c2b8b4
+  source:
+    handle_id: null
+    workflow_module_instance_id: test_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: ars
+- edge_id: edge_input-y-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: y
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data:
+      - key: x
+        required: true
+        type: string
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: y
+  properties:
+    break_on_error: true
+    list:
+    - x
+    - y
+  workflow_module_instance_id: y
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: y
+  name: Start
+  properties: {}
+  workflow_module_instance_id: y_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: y
+  name: End
+  properties: {}
+  workflow_module_instance_id: y_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-wait-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: y
+  name: wait
+  properties:
+    wait_for: 1
+  workflow_module_instance_id: wait
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: y
+  name: agg
+  properties:
+    lists:
+    - '{{  ITERATOR.y.index }} {{'
+    recursive: false
+  workflow_module_instance_id: agg
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: y
+  name: test
+  properties:
+    break_on_error: true
+    list:
+    - a
+    - c
+  workflow_module_instance_id: test
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: test
+  name: Start
+  properties: {}
+  workflow_module_instance_id: test_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: test
+  name: End
+  properties: {}
+  workflow_module_instance_id: test_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-concatenate_lists-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: test
+  name: ars
+  properties:
+    lists: ''
+    recursive: false
+  workflow_module_instance_id: ars
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

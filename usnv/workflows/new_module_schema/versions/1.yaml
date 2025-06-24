@@ -1,0 +1,183 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-5e5c8db9-5e7b-4f71-9bb2-eed5b2955576
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: a
+- edge_id: input-4e34e055-26d1-4fc2-9cd2-8cd644f98c91
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: b
+- edge_id: edge_a-aaaa-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: a
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaa
+- edge_id: edge_b-aaaa-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: b
+  target:
+    handle_id: null
+    workflow_module_instance_id: aaaa
+- edge_id: a-e695d316-d355-4fd8-85d0-23fe4d1d64b9
+  source:
+    handle_id: null
+    workflow_module_instance_id: a
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+- edge_id: a-a379eae2-d2d7-447a-ab51-9f45994880b8
+  source:
+    handle_id: null
+    workflow_module_instance_id: a
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstarstarstarstarsarstarst
+- edge_id: a-04dcde84-7218-4de1-a0de-cf862d08c49b
+  source:
+    handle_id: null
+    workflow_module_instance_id: a
+  target:
+    handle_id: null
+    workflow_module_instance_id: srtg
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-update_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: aaaa
+  properties:
+    data: '{{ a }}'
+    variable_name: Stupid Variable workaaa
+  workflow_module_instance_id: aaaa
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: a
+  properties:
+    data: a
+  workflow_module_instance_id: a
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: b
+  properties:
+    data: b
+  workflow_module_instance_id: b
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: postgres-query-2
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    postgres_connection:
+      connection_app_type: postgres_heroku
+      connection_management_type: managed
+      connection_name: My Postgres Connection
+    query: SELECT * FROM public.mytable
+  workflow_module_instance_id: arst
+- connections:
+  - connection_app_type: slack
+    connection_management_type: managed
+    connection_name: lol slack
+  description: arstarstarstarstsratarstrsatr
+  error_handling_strategy: null
+  module_id: slack-send_message_channel-1
+  module_options:
+    enable_error_handling: false
+  name: arstarstarstarstarsarstarst
+  properties:
+    channel:
+      id: C03PLHH6FCY
+      label: '#random'
+    message: ciao
+    send_as:
+      id: U078F9YHB3J
+      label: Silyas Bieri
+  workflow_module_instance_id: arstarstarstarstarsarstarst
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: postgres-query-2
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    postgres_connection:
+      connection_app_type: postgres_heroku
+      connection_management_type: managed
+      connection_name: My Postgres Connection
+    query: SELECT * FROM public.mytable
+  workflow_module_instance_id: arst
+- connections:
+  - connection_app_type: airtable
+    connection_management_type: managed
+    connection_name: Airtable
+  description: null
+  error_handling_strategy: null
+  module_id: airtable-delete_records-1
+  module_options:
+    patches: {}
+  name: srtg
+  properties:
+    records: "[\n    \"record_id1\",\n    \"record_id2\"\n]"
+  workflow_module_instance_id: srtg
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

@@ -1,0 +1,120 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: 82c78a80-97ff-4f1b-85ce-0922186f6ee3-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: get
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: add_data-636f29f2-a250-47b5-90a7-6c5b2a2ca1ea
+  source:
+    handle_id: null
+    workflow_module_instance_id: add_data
+  target:
+    handle_id: null
+    workflow_module_instance_id: clean
+- edge_id: edge_clean-xxx-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: clean
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-insert_data-2
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties:
+    data:
+    - '{{ clean | tojson | replace(''\\\\\\\\\\\\\\\\\\\\\\\\'', ''\\\\\\\'') | json
+      }}'
+    ingestion_format: data_only
+    workflows_app_queue_id: fddde2b3-44b6-4848-9a49-36d3b3289b0d
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: add_data
+  properties:
+    data: '{"record": {"Abschluss-Besitzer": {"id": "318777000017206719"}, "Letzte
+      Aktivitätszeit": "2025-06-03T09:58:55", "Abschluss-Name": "Einbürgerung #211062",
+      "Wechselkurs": 1, "Währung": "EUR", "Straße Hausnummer": "Maubisstrasse 10",
+      "Stufe": "Abgeschlossen, gewonnen", "Eintrag-ID": "318777000247752039", "Anzahl
+      der Raten": 12, "Woo-ÜB-ID": 211062, "Zeitpunkt der Erstellung": "2025-01-15T14:31:54",
+      "E-Mail Kündigungsoption": false, "Rechnungs-Nummer (old)": 23141, "Link zum
+      Abo": "https://migrando.de/wp-admin/post.php?post=211063&action=edit", "Produkt
+      WooCommerce": "Einbürgerung", "Nachname": "Onwong\\''a", "Soll-Umsatz Netto":
+      1382.62, "Erstellt durch": {"id": "318777000029295001"}, "Telefon": "4917684263987",
+      "Zahlungsmethode": "SEPA-Lastschrift", "Postleitzahl": "41564", "Ort": "Kaarst",
+      "Link zur ÜB": "https://migrando.de/wp-admin/post.php?post=211062&action=edit",
+      "Geändert von": {"id": "318777000159225697"}, "Erwartete Einnahmen": 1645.32,
+      "Woo-ID": 211062 }}'
+  workflow_module_instance_id: add_data
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-consumer_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: get
+  properties:
+    workflows_app_queue_id: fddde2b3-44b6-4848-9a49-36d3b3289b0d
+  workflow_module_instance_id: get
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: clean
+  properties:
+    data: '{{ add_data | tojson }}'
+  workflow_module_instance_id: clean
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

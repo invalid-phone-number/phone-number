@@ -1,0 +1,195 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-06d2cac3-6b3a-4a5c-b224-fcf58ba3bd33
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test_variable
+- edge_id: test_variable-525eacc1-0540-4aef-8f3f-ef918f1e43ec
+  source:
+    handle_id: null
+    workflow_module_instance_id: test_variable
+  target:
+    handle_id: null
+    workflow_module_instance_id: loop
+- edge_id: input-626f2fc8-3708-4cab-a6ae-f7bda52d5e55
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: loop_var
+- edge_id: edge_loop_var-loop-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: loop_var
+  target:
+    handle_id: null
+    workflow_module_instance_id: loop
+- edge_id: loop_start-f9761655-2ac0-41a7-9464-c49f903c236f
+  source:
+    handle_id: null
+    workflow_module_instance_id: loop_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: x
+- edge_id: edge_x-break_loop_x-condition_a-input
+  source:
+    handle_id: condition_a
+    workflow_module_instance_id: x
+  target:
+    handle_id: null
+    workflow_module_instance_id: break_loop_x
+- edge_id: loop_start-35d3f524-9065-455c-9bb9-2fda8b396836
+  source:
+    handle_id: null
+    workflow_module_instance_id: loop_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: update_variable
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-create_workflow_variable-1
+  module_options:
+    enable_error_handling: false
+  name: test variable
+  properties:
+    variable_name: new_var
+    variable_value: '0'
+  workflow_module_instance_id: test_variable
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-while_loop-1
+  module_options:
+    enable_error_handling: false
+  name: loop
+  properties:
+    break_on_error: true
+    variable_name: loop_var
+  workflow_module_instance_id: loop
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-while_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: loop
+  name: Start
+  properties: {}
+  workflow_module_instance_id: loop_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-while_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: loop
+  name: End
+  properties:
+    output: '{{ loop_start }}'
+  workflow_module_instance_id: loop_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-if_else-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: loop
+  name: x
+  properties:
+    conditions:
+    - condition:
+        id: initial-condition-group-id
+        type: group
+        value:
+        - id: initial-condition-value-id
+          operator: is greater than
+          target_value: '{{ 1 }}'
+          type: value
+          value: '{{ loop_start.index }}'
+      condition_response: ''
+      handle_id: condition_a
+  workflow_module_instance_id: x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-while_loop_break-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: loop
+  name: break_loop_x
+  properties: {}
+  workflow_module_instance_id: break_loop_x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-update_workflow_variable-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: loop
+  name: update variable
+  properties:
+    variable_name: new_var
+    variable_value: '{{ WORKFLOW_VARIABLES.new_var | string | int + 1 }}'
+  workflow_module_instance_id: update_variable
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-create_workflow_variable-1
+  module_options:
+    enable_error_handling: false
+  name: loop_var
+  properties:
+    variable_name: loop_var
+    variable_value: 'true'
+  workflow_module_instance_id: loop_var
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

@@ -1,0 +1,123 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-979830d1-c383-41d0-ad23-fc63865b35da
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: x
+- edge_id: x-d81bc0cd-2cf8-4112-8cac-c6a559ae9243
+  source:
+    handle_id: null
+    workflow_module_instance_id: x
+  target:
+    handle_id: null
+    workflow_module_instance_id: xx
+- edge_id: x-6d079bcf-bdd6-458e-959d-4aa055f82d92
+  source:
+    handle_id: null
+    workflow_module_instance_id: x
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: xx-34e40f80-e3c1-4ac8-a8ba-4b3af23d851c
+  source:
+    handle_id: null
+    workflow_module_instance_id: xx
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxxx
+- edge_id: xxxx-276f1578-0510-40e7-99fa-d4f38c990a94
+  source:
+    handle_id: null
+    workflow_module_instance_id: xxxx
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxxxx
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: x
+  properties: {}
+  workflow_module_instance_id: x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xx
+  properties: {}
+  workflow_module_instance_id: xx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties: {}
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxxx
+  properties: {}
+  workflow_module_instance_id: xxxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: xxxxx
+  properties: {}
+  workflow_module_instance_id: xxxxx
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

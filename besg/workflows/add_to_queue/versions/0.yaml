@@ -1,0 +1,127 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-a31f3687-9030-4bc3-bcf6-418b77270e18
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: run_for_loop
+- edge_id: edge_run_for_loop_start-add-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: run_for_loop_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: add
+- edge_id: edge_add-run_for_loop_end-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: add
+  target:
+    handle_id: null
+    workflow_module_instance_id: run_for_loop_end
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: Run For Loop
+  properties:
+    break_on_error: true
+    list:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  workflow_module_instance_id: run_for_loop
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-insert_data-2
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: run_for_loop
+  name: add
+  properties:
+    data:
+    - ' { "data": "{{ run_for_loop_start.index }}:1", "metadata": {"event_scheduled_time":
+      1746828610 } }'
+    - ' { "data": "{{ run_for_loop_start.index }}:2", "metadata": {"event_scheduled_time":
+      1746428610 } }'
+    - ' { "data": "{{ run_for_loop_start.index }}:3", "metadata": {"event_scheduled_time":
+      1746627838 } }'
+    ingestion_format: data_and_metadata
+    workflows_app_queue_id: c25a5f70-1af2-4e84-9228-17af0366d95c
+  workflow_module_instance_id: add
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: run_for_loop
+  name: Start
+  properties: {}
+  workflow_module_instance_id: run_for_loop_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: run_for_loop
+  name: End
+  properties: {}
+  workflow_module_instance_id: run_for_loop_end
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

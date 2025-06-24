@@ -1,0 +1,121 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-72110531-0156-4908-9669-0198d771dc23
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: if_empty
+- edge_id: edge_if_empty-is_empty-condition_a-input
+  source:
+    handle_id: condition_a
+    workflow_module_instance_id: if_empty
+  target:
+    handle_id: null
+    workflow_module_instance_id: is_empty
+- edge_id: edge_if_empty-is_not_empty-condition_b-input
+  source:
+    handle_id: else
+    workflow_module_instance_id: if_empty
+  target:
+    handle_id: null
+    workflow_module_instance_id: is_not_empty
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-if_else-1
+  module_options:
+    enable_error_handling: false
+  name: If Empty
+  properties:
+    conditions:
+    - condition:
+        id: 87f826bc-ae8d-47bc-ade1-b27ad694e0ab
+        type: group
+        value:
+        - id: initial-condition-value-id
+          operator: is greater than
+          target_value: '12'
+          target_value_type: number
+          type: value
+          value: '10'
+          value_type: json
+      condition_response: ''
+      handle_id: condition_a
+    - condition:
+        id: 9eba530f-77a9-42ef-9fe4-fdb7ef5218b9
+        type: group
+        value:
+        - id: e9f3ff0c-e4f3-4229-b9d9-13d0694565d7
+          operator: is null
+          target_value_type: string
+          type: value
+          value: rs
+          value_type: array
+      condition_response: ''
+      handle_id: condition_c
+  workflow_module_instance_id: if_empty
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: is_empty
+  properties:
+    data: is empty
+  workflow_module_instance_id: is_empty
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: is_not_empty
+  properties:
+    data: is not empty
+  workflow_module_instance_id: is_not_empty
+return_workflow_module_instance_ids:
+- is_empty
+- is_not_empty
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

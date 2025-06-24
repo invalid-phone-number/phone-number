@@ -1,0 +1,11 @@
+consumer_workflow_id: dab6a382-1584-4683-84a5-c89318bee89b
+consumer_workflow_module_instance_id: bro
+flush_batch_size: 1000
+flush_rate_limit_max_flush_count: 10
+flush_rate_limit_time_window: 1
+flush_record_max_age: 60
+flush_strategy: !!python/object/apply:workflows_schemas.models.app_queues.app_queue_flush_strategy.AppQueueFlushStrategy
+- fifo
+options: null
+workflows_app_queue_status: !!python/object/apply:workflows_schemas.models.app_queues.app_queue_status.AppQueueStatus
+- running

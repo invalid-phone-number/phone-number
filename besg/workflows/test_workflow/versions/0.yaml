@@ -1,0 +1,205 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: 695c1b25-ba67-49e4-9e2b-c4f9a4b834b3-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: bro
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-10cd6f24-3b0e-4530-af2c-573317351c15
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: test
+- edge_id: test-f27f28c0-b05f-40ca-aee0-3bf7ba8e2a23
+  source:
+    handle_id: else
+    workflow_module_instance_id: test
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: input-a6c64499-ee5f-4101-aa3d-fd2a0f5e033e
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: filter
+- edge_id: edge_filter_start-filter_end-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: filter_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: filter_end
+- edge_id: input-dfe2f8bd-1262-4ae1-aed3-c47e9590f1ea
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: rst
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data:
+      - key: first_name
+        required: false
+        type: string
+      - key: last_name
+        required: false
+        type: string
+      - key: email
+        required: true
+        type: string
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-consumer_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: bro
+  properties:
+    workflows_app_queue_id: 792a6232-f04f-4f0d-8007-df04c7eebdfa
+  workflow_module_instance_id: bro
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-if_else-1
+  module_options:
+    enable_error_handling: false
+  name: test
+  properties:
+    conditions:
+    - condition:
+        id: aea13adf-6e3b-49f4-b9f1-c2b555e79a82
+        type: group
+        value:
+        - id: initial-a-value-id
+          operator: is not null
+          type: value
+          value: '{{ bro }}'
+      condition_response: ''
+      handle_id: condition_a
+    - condition:
+        id: initial-condition-b-id
+        type: group
+        value:
+        - id: initial-b-value-id
+          operator: is in
+          target_value:
+          - '1'
+          - '2'
+          type: value
+          value: '{{ bro }}'
+      condition_response: ''
+      handle_id: condition_b
+  workflow_module_instance_id: test
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-insert_data-2
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties:
+    data:
+    - tsrneiostrneai
+    ingestion_format: data_only
+    workflows_app_queue_id: 792a6232-f04f-4f0d-8007-df04c7eebdfa
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: filter
+  properties:
+    break_on_error: true
+    filter_null_values: true
+    list:
+    - 1
+    - 2
+    - null
+    - 3
+    - 4
+    - null
+    - 5
+  workflow_module_instance_id: filter
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: filter
+  name: Start
+  properties: {}
+  workflow_module_instance_id: filter_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: filter
+  name: End
+  properties:
+    output: '{{ filter_start.record }}'
+  workflow_module_instance_id: filter_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-javascript_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: rst
+  properties:
+    context: []
+    script: "function main(WORKFLOW_CONTEXT) {\n    x = {\n        \"name\": \"Jane\
+      \ Doe\",\n        \"age\": 25,\n        \"city\": \"Lausanne\"\n    }\n    \n\
+      \    return x\n}"
+  workflow_module_instance_id: rst
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

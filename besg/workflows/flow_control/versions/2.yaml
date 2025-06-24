@@ -1,0 +1,104 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-3d7a4ec5-749a-47ce-9ce3-d72480aae08a
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+- edge_id: input-77e833a7-e9f3-451e-a289-2e45944f19d2
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: gopher
+- edge_id: edge_gopher_start-gopher_end-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: gopher_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: gopher_end
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options: {}
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options: {}
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: GET
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options: {}
+  name: arst
+  properties: {}
+  workflow_module_instance_id: arst
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: Gopher
+  properties:
+    break_on_error: true
+    list:
+    - hello
+    - world
+  workflow_module_instance_id: gopher
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    layout:
+      group_module_instance_id: gopher
+  name: Start
+  properties: {}
+  workflow_module_instance_id: gopher_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    layout:
+      group_module_instance_id: gopher
+  name: End
+  properties: {}
+  workflow_module_instance_id: gopher_end
+return_workflow_module_instance_ids:
+- ''
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

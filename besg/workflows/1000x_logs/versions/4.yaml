@@ -1,0 +1,185 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-fe6f8af4-753e-44e4-befe-7498db5c8b29
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+- edge_id: input-f102e623-84c6-4444-a779-91f3a4a4a5a2
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: mnenemnem
+- edge_id: mnenemnem-55b74351-6dee-4a8d-aed2-bbc09096ade8
+  source:
+    handle_id: null
+    workflow_module_instance_id: mnenemnem
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstsss
+- edge_id: arstsss_start-4966304b-a662-4fa6-8ca4-a68e9cae7309
+  source:
+    handle_id: null
+    workflow_module_instance_id: arstsss_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstr
+- edge_id: edge_arstr-arstsss_end-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: arstr
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstsss_end
+- edge_id: arstsss_start-59502c5d-1f79-42bd-95c5-06d1478285c2
+  source:
+    handle_id: null
+    workflow_module_instance_id: arstsss_start
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstar
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data:
+      - key: asss
+        required: false
+        type: string
+      - key: rrs
+        required: false
+        type: number
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data:
+      - key: arst
+        required: false
+        type: string
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data:
+      - key: arst
+        required: false
+        type: string
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    context: []
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    \r\n    return x"
+  workflow_module_instance_id: arst
+- connections: []
+  description: arst
+  error_handling_strategy: null
+  module_id: code-execution-javascript_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: mnenemnem
+  properties:
+    context: []
+    script: "function main(WORKFLOW_CONTEXT) {\r\n    x = {\r\n        \"name\": \"\
+      Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n  \
+      \  }\r\n    \r\n    return x\n}"
+  workflow_module_instance_id: mnenemnem
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop-1
+  module_options:
+    enable_error_handling: false
+  name: arstsssrrr
+  properties:
+    break_on_error: true
+    list:
+    - 1
+  workflow_module_instance_id: arstsss
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_input-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: arstsss
+  name: Start
+  properties: {}
+  workflow_module_instance_id: arstsss_start
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-for_loop_output-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: arstsss
+  name: End
+  properties: {}
+  workflow_module_instance_id: arstsss_end
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: arstsss
+  name: arstr
+  properties:
+    context: []
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    \r\n    return x"
+  workflow_module_instance_id: arstr
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-decode-1
+  module_options:
+    enable_error_handling: false
+    layout:
+      group_module_instance_id: arstsss
+  name: arstar
+  properties:
+    data: ''
+    decode_from: base64
+  workflow_module_instance_id: arstar
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

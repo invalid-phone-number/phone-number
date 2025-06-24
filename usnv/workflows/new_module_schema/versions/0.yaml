@@ -1,0 +1,150 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-80c9ee58-5dee-4e18-96da-b9484f120ccc
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: new_module_version
+- edge_id: edge_input-new_module_version-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: new_module_version
+- edge_id: edge_input-arst-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstarstarstrs
+- edge_id: arstarstarst-733aede3-e6e9-412e-bb78-80411ba28183
+  source:
+    handle_id: null
+    workflow_module_instance_id: arstarstarstrs
+  target:
+    handle_id: null
+    workflow_module_instance_id: asrt
+- edge_id: edge_input-arstarstarstrs-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstarstarstrs
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: postgres-query-2
+  module_options:
+    enable_error_handling: false
+  name: New Module version
+  properties:
+    postgres_connection:
+      connection_app_type: postgres_heroku
+      connection_management_type: managed
+      connection_name: My Postgres Connection
+      connection_type: {}
+    query: SELECT * FROM public.mytable
+  workflow_module_instance_id: new_module_version
+- connections:
+  - connection_app_type: postgres_heroku
+    connection_management_type: managed
+    connection_name: My Postgres Connection
+  description: tsrgrstgrst
+  error_handling_strategy:
+    conditions:
+    - condition:
+        id: 138a7f71-2588-4813-8815-3fcc43cc27e7
+        type: !!python/object/apply:workflows_schemas.models.workflows_versions.workflow_schema_module_condition.WorkflowModuleConditionType
+        - group
+        value:
+        - id: e30f2167-895f-4bfd-b533-938bdddc275c
+          operator: !!python/object/apply:workflows_schemas.models.workflows_versions.workflow_schema_module_condition.WorkflowModuleConditionOperatorType
+          - is not null
+          target_value: null
+          type: !!python/object/apply:workflows_schemas.models.workflows_versions.workflow_schema_module_condition.WorkflowModuleConditionType
+          - value
+          value: arstrst
+      retry_policy:
+        retry_count: 0
+        retry_interval: 0
+    else_condition: null
+  module_id: postgres-delete-2
+  module_options:
+    enable_error_handling: true
+  name: arstarstarstrs
+  properties:
+    matching_columns: id, name
+    postgres_connection:
+      connection_app_type: postgres_heroku
+      connection_management_type: managed
+      connection_name: My Postgres Connection
+    records: "[\n {\"id\": 1, \"name\": \"John Doe\", \"city\": \"City X\"}, \n {\"\
+      id\": 2, \"name\": \"Jane Doe\", \"city\": \"City Y\"}, \n {\"id\": 3, \"name\"\
+      : \"Franco\", \"city\": \"City Z\"}\n]"
+    schema_name: arst
+    table_name: arst
+  workflow_module_instance_id: arstarstarstrs
+- connections:
+  - connection_app_type: slack
+    connection_management_type: managed
+    connection_name: lol slack
+  description: null
+  error_handling_strategy: null
+  module_id: slack-send_message_channel-1
+  module_options:
+    enable_error_handling: false
+  name: asrt
+  properties:
+    channel:
+      id: C060VRQTRBM
+      label: '#business-update'
+    send_as:
+      id: U078F9YHB3J
+      label: Silyas Bieri
+  workflow_module_instance_id: asrt
+return_workflow_module_instance_ids: null
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

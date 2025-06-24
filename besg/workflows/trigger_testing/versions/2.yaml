@@ -1,0 +1,116 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-f33dcd6b-bf6d-4cb9-8421-8b302fc6d971
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: hello_world
+- edge_id: input-e59c9878-5492-4df2-bff0-ef35c1a12cca
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: create
+- edge_id: input-265ea2c9-cb68-43e1-a9ce-c6cf7e742faf
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xxx
+- edge_id: xxx-11574e54-b0f5-4272-b44f-77601038a0f2
+  source:
+    handle_id: null
+    workflow_module_instance_id: xxx
+  target:
+    handle_id: null
+    workflow_module_instance_id: show_var
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: Hello World
+  properties:
+    context: []
+    script: "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane\
+      \ Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\
+      \n    \r\n    return x"
+  workflow_module_instance_id: hello_world
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-create_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: Create
+  properties:
+    data:
+      variable_value: x
+    variable_name: x
+  workflow_module_instance_id: create
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-delete_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: xxx
+  properties:
+    variable_name: x
+  workflow_module_instance_id: xxx
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: Show var
+  properties:
+    data: '{{ WORKSPACE_VARIABLES.besg }}'
+  workflow_module_instance_id: show_var
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

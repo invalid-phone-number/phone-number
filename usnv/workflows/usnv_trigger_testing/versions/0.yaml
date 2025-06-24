@@ -1,0 +1,84 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-c69c0fea-da9c-4f46-9708-968719337765
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: x
+- edge_id: input-f6455487-4623-48b7-a96e-dc57c5808e65
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: xcc
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-http_requests-1
+  module_options:
+    enable_error_handling: false
+  name: x
+  properties:
+    cookies: []
+    header: []
+    method: POST
+    query_parameters: []
+    url: x
+  workflow_module_instance_id: x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-insert_data-2
+  module_options:
+    enable_error_handling: false
+  name: xcc
+  properties:
+    data: []
+    workflows_app_queue_id: f481c951-c597-465e-ba78-f7bda23b39b2
+  workflow_module_instance_id: xcc
+return_workflow_module_instance_ids:
+- x
+- post_trigger
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

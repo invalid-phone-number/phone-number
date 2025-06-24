@@ -1,0 +1,247 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-cf269fba-8068-47cb-9d42-b7bbf4f96177
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arst
+- edge_id: input-f8e4d201-3e6d-4f48-96e9-b0549f5657c9
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstrst
+- edge_id: input-e31aee8b-3fc2-435d-9178-718b47d7364a
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: asrt
+- edge_id: input-6c5c0b8b-b07d-4693-956d-7ba11cfe5094
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: rtsg
+- edge_id: rtsg-c61142df-6c4f-4667-8936-8daa79998f3d
+  source:
+    handle_id: null
+    workflow_module_instance_id: rtsg
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstr
+- edge_id: input-647a1d30-218b-472f-92c1-09d4bd91882b
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstrss
+- edge_id: input-7f3c5e00-d319-4905-b92f-d8ad06a93c0f
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: bpf
+- edge_id: rtsg-3b95a85b-32b3-49f4-89dc-91b3e542065a
+  source:
+    handle_id: null
+    workflow_module_instance_id: rtsg
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstarst
+- edge_id: edge_bpf-arstss-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: bpf
+  target:
+    handle_id: null
+    workflow_module_instance_id: arstss
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys: []
+    body:
+      allow_extra_fields: true
+      data:
+      - key: my_int
+        required: false
+        type: string
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: sync
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: postgres-query-2
+  module_options:
+    enable_error_handling: false
+  name: arst
+  properties:
+    postgres_connection:
+      connection_app_type: postgres_heroku
+      connection_management_type: managed
+      connection_name: My Connection
+    query: SELECT * FROM public.mytable
+  workflow_module_instance_id: arst
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: queues-insert_data-2
+  module_options:
+    enable_error_handling: false
+  name: arstrst
+  properties:
+    data: []
+    workflows_app_queue_id: c25a5f70-1af2-4e84-9228-17af0366d95c
+  workflow_module_instance_id: arstrst
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-delete_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: asrt
+  properties:
+    variable_name: old variable
+  workflow_module_instance_id: asrt
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-delete_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: rtsg
+  properties:
+    variable_name: old variable
+  workflow_module_instance_id: rtsg
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: variables-delete_workspace_variable-1
+  module_options:
+    enable_error_handling: false
+  name: arstr
+  properties:
+    variable_name: new value
+  workflow_module_instance_id: arstr
+- connections:
+  - connection_app_type: airtable
+    connection_management_type: managed
+    connection_name: Airtable - Silyas
+  description: null
+  error_handling_strategy: null
+  module_id: airtable-list_records-1
+  module_options:
+    enable_error_handling: false
+  name: arstrss
+  properties:
+    additional_fields: "{\n    \"view\": \"grid view\" ,\n    \"cellFormat\": \"markdown\"\
+      \ \n}"
+    base:
+      id: appUwEGPZChjXXfNm
+      label: rs
+    fields: "[\n    \"field_id1\",\n    \"field_id2\"\n]"
+    max_records: 1000
+    page_size: 100
+    sort: "[\n    { \"field\": \"field_id1\", \"direction\": \"asc\" }, \n    { \"\
+      field\": \"field_id2\", \"direction\": \"desc\" }\n]"
+    table:
+      id: tblLcyj7ipN1A8W4p
+      label: Table 2
+  workflow_module_instance_id: arstrss
+- connections:
+  - connection_app_type: hubspot
+    connection_management_type: managed
+    connection_name: Hubspot Connection
+  description: null
+  error_handling_strategy: null
+  module_id: hubspot-archive_records_standard_objects-3
+  module_options:
+    enable_error_handling: true
+  name: bpf
+  properties:
+    object_type:
+      id: emails
+      label: Emails
+    records: "[\n  \"1\",\n  \"2\",\n  \"3\"\n]"
+  workflow_module_instance_id: bpf
+- connections:
+  - connection_app_type: slack
+    connection_management_type: managed
+    connection_name: My Connectionxxxx
+  description: null
+  error_handling_strategy: null
+  module_id: slack-send_message_channel-1
+  module_options:
+    enable_error_handling: false
+  name: arstss
+  properties:
+    channel:
+      id: C03RYK81GP8
+      label: '#design'
+    send_as:
+      id: U078F9YHB3J
+      label: Silyas Bieri
+  workflow_module_instance_id: arstss
+- connections:
+  - connection_app_type: hubspot
+    connection_management_type: managed
+    connection_name: Hubspot Connection
+  description: null
+  error_handling_strategy: null
+  module_id: hubspot-search_records_standard_objects-3
+  module_options:
+    enable_error_handling: false
+  name: arstarst
+  properties:
+    after: '0'
+    filterGroups: "[\n  {\n    \"filters\": [\n      {\n        \"propertyName\":\
+      \ \"lastname\",\n        \"operator\": \"EQ\",\n        \"value\": \"Smith\"\
+      \n      }\n    ]\n  }\n]"
+    limit: 100
+    object_type:
+      id: contacts
+      label: Contacts
+    properties: "[\n  \"firstname\",\n  \"lastname\",\n  \"email\"\n]"
+    sorts: "[\n  {\n    \"propertyName\": \"createdate\",\n    \"direction\": \"DESCENDING\"\
+      \n  }\n]"
+  workflow_module_instance_id: arstarst
+return_workflow_module_instance_ids:
+- bpf
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300
