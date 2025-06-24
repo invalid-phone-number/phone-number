@@ -1,0 +1,295 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [
+    "input_data"
+  ],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": "a",
+      "properties": {
+        "body": {
+          "data": [
+            {
+              "key": "my_int",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "sync",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "test response",
+      "workflow_module_instance_id": "test_response",
+      "module_id": "code-execution-javascript_code_execution-1",
+      "description": "arrrr",
+      "properties": {
+        "script": "function main(WORKFLOW_CONTEXT) {\r\n    return \"904309439430320923480932840923\"\r\n}",
+        "context": [
+          {
+            "name": "input",
+            "value": "{{ input.body.my_int }}"
+          }
+        ]
+      },
+      "connections": [],
+      "module_options": {
+        "patches": {},
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Test",
+      "workflow_module_instance_id": "test",
+      "module_id": "system-stop-1",
+      "description": null,
+      "properties": {
+        "default_response": "{{ input.body }}"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Test LLM Model",
+      "workflow_module_instance_id": "test_llm_model",
+      "module_id": "llm-prompt_llm-1",
+      "description": null,
+      "properties": {
+        "prompt": "Tell me about this: {{ input.body }}",
+        "llm-model": "llama_3_8b"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "x",
+      "workflow_module_instance_id": "x",
+      "module_id": "system-transform-1",
+      "description": null,
+      "properties": {
+        "data": "[\n    \"hello\",\n    {{ test_response }},\n    {{ input.body }}\n]",
+        "transform_to": "json",
+        "transform_from": "string"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Input Data",
+      "workflow_module_instance_id": "input_data",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "xxx {{ input.body.my_int }}\n"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "rrrr",
+      "workflow_module_instance_id": "rrrr",
+      "module_id": "system-concatenate_lists-1",
+      "description": "s",
+      "properties": {
+        "lists": [
+          "sssss"
+        ],
+        "recursive": false
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "testr",
+      "workflow_module_instance_id": "testr",
+      "module_id": "system-if_else-1",
+      "description": "rrarr",
+      "properties": {
+        "conditions": [
+          {
+            "condition": {
+              "id": "initial-condition-group-id",
+              "type": "group",
+              "value": [
+                {
+                  "id": "initial-condition-value-id",
+                  "type": "value",
+                  "value": "0",
+                  "operator": "is less than or equal to",
+                  "target_value": "{{ input.body.my_int | int }}"
+                }
+              ]
+            },
+            "handle_id": "0fcd6145-f01c-4c4d-a1d9-04876000889a",
+            "condition_response": ""
+          }
+        ]
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arst",
+      "workflow_module_instance_id": "arst",
+      "module_id": "code-execution-javascript_code_execution-1",
+      "description": "rrrs",
+      "properties": {
+        "script": "function main(WORKFLOW_CONTEXT) {\r\n    x = {\r\n        \"name\": \"Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\n    \r\n    return x\n}",
+        "context": [
+          {
+            "name": "srrs",
+            "value": "rrrrsrsr"
+          }
+        ]
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test_llm_model"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test"
+      },
+      "edge_id": "edge_test_llm_model-test-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test_response"
+      },
+      "edge_id": "edge_input-test_response-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test_response"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "x"
+      },
+      "edge_id": "edge_test_response-x-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "rrrr"
+      },
+      "edge_id": "input-e94fb187-d8ac-4b45-a5f8-de94a818a556"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "testr"
+      },
+      "edge_id": "input-ef26b0ed-81e9-4f86-9569-223aefcd3851"
+    },
+    {
+      "source": {
+        "handle_id": "else",
+        "workflow_module_instance_id": "testr"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input_data"
+      },
+      "edge_id": "edge_testr-input_data-else-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arst"
+      },
+      "edge_id": "input-3fb41837-7bc1-4cb2-9510-a18cd7224ae8"
+    }
+  ]
+}

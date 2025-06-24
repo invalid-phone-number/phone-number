@@ -1,0 +1,166 @@
+{
+  "workflow_execution_timeout": 30,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [
+    "wait_again"
+  ],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": "aaaaaa",
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "insert",
+      "workflow_module_instance_id": "insert",
+      "module_id": "queues-insert_data-2",
+      "description": null,
+      "properties": {
+        "data": [
+          "x"
+        ],
+        "workflows_app_queue_id": "4ebda749-7081-45b4-a615-887e87094f59"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Wait",
+      "workflow_module_instance_id": "wait",
+      "module_id": "system-wait-1",
+      "description": null,
+      "properties": {
+        "wait_for": 1
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Wait Again",
+      "workflow_module_instance_id": "wait_again",
+      "module_id": "system-wait-1",
+      "description": null,
+      "properties": {
+        "wait_for": 3
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Wait 5",
+      "workflow_module_instance_id": "wait_5",
+      "module_id": "system-wait-1",
+      "description": null,
+      "properties": {
+        "wait_for": 30
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "insert"
+      },
+      "edge_id": "input-fe89044f-1dee-48fe-98cd-7da8505ebfec"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "wait"
+      },
+      "edge_id": "input-c39bc20b-4803-4be3-af10-1e3d055d8d33"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "wait"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "wait_again"
+      },
+      "edge_id": "wait-90a966aa-a3be-44dd-9beb-9afed203df15"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "wait"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "wait_5"
+      },
+      "edge_id": "wait-8547df66-3335-4008-b14f-fa50e820d8ef"
+    }
+  ]
+}

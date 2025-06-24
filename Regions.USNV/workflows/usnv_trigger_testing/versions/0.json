@@ -1,0 +1,119 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [
+    "x",
+    "post_trigger"
+  ],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "x",
+      "workflow_module_instance_id": "x",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "x",
+        "header": [],
+        "method": "POST",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "xcc",
+      "workflow_module_instance_id": "xcc",
+      "module_id": "queues-insert_data-2",
+      "description": null,
+      "properties": {
+        "data": [],
+        "workflows_app_queue_id": "f481c951-c597-465e-ba78-f7bda23b39b2"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "x"
+      },
+      "edge_id": "input-c69c0fea-da9c-4f46-9708-968719337765"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "xcc"
+      },
+      "edge_id": "input-f6455487-4623-48b7-a96e-dc57c5808e65"
+    }
+  ]
+}

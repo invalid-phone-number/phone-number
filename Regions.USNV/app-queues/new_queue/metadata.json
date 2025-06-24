@@ -1,0 +1,15 @@
+{
+  "workflows_app_queue_resource_id": "new_queue",
+  "workflows_app_queue_name": "new queue",
+  "workflows_app_queue_status": "running",
+  "consumer_workflow_id": null,
+  "consumer_workflow_module_instance_id": null,
+  "flush_batch_size": 1000,
+  "flush_record_max_age": 60,
+  "flush_rate_limit_max_flush_count": 10,
+  "flush_rate_limit_time_window": 1,
+  "flush_strategy": "fifo",
+  "options": null,
+  "created_by": 2152,
+  "created_time": "2025-05-28T08:47:22.923491"
+}

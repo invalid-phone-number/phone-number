@@ -1,0 +1,122 @@
+{
+  "workflow_execution_timeout": 5,
+  "workflow_module_execution_timeout": 10,
+  "return_workflow_module_instance_ids": [],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "xxxx",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_triggerx",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "xxxx",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "xxxxxx",
+      "workflow_module_instance_id": "xxxxxx",
+      "module_id": "airtable-list_records-1",
+      "description": null,
+      "properties": {
+        "base": {
+          "id": "appffk32GHlts2um7",
+          "label": "Second Base"
+        },
+        "sort": "[\n    { \"field\": \"field_id1\", \"direction\": \"asc\" }, \n    { \"field\": \"field_id2\", \"direction\": \"desc\" }\n]",
+        "table": {
+          "id": "tbluxRcUif6ypgRGM",
+          "label": "Table 1"
+        },
+        "fields": "[\n    \"field_id1\",\n    \"field_id2\"\n]",
+        "page_size": 100,
+        "max_records": 1000,
+        "additional_fields": "{\n    \"view\": \"grid view\" ,\n    \"cellFormat\": \"markdown\" \n}"
+      },
+      "connections": [
+        {
+          "connection_name": "Airtable - Silyas",
+          "connection_app_type": "airtable",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Hello World",
+      "workflow_module_instance_id": "hello_world",
+      "module_id": "code-execution-python_code_execution-1",
+      "description": null,
+      "properties": {
+        "script": "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\n    \r\n    return x",
+        "context": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Create",
+      "workflow_module_instance_id": "create",
+      "module_id": "variables-create_workspace_variable-1",
+      "description": null,
+      "properties": {
+        "data": {
+          "variable_value": "x"
+        },
+        "variable_name": "x"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "xxx",
+      "workflow_module_instance_id": "xxx",
+      "module_id": "variables-delete_workspace_variable-1",
+      "description": null,
+      "properties": {
+        "variable_name": "x"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Show var",
+      "workflow_module_instance_id": "show_var",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{{ WORKSPACE_VARIABLES.besg }}"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "hello_world"
+      },
+      "edge_id": "input-f33dcd6b-bf6d-4cb9-8421-8b302fc6d971"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "create"
+      },
+      "edge_id": "input-e59c9878-5492-4df2-bff0-ef35c1a12cca"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "xxx"
+      },
+      "edge_id": "input-265ea2c9-cb68-43e1-a9ce-c6cf7e742faf"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "xxx"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "show_var"
+      },
+      "edge_id": "xxx-11574e54-b0f5-4272-b44f-77601038a0f2"
+    }
+  ]
+}

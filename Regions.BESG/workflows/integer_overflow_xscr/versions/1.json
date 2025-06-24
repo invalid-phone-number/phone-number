@@ -1,0 +1,355 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [
+    "bpf"
+  ],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [
+            {
+              "key": "my_int",
+              "type": "string",
+              "required": false
+            }
+          ],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "sync",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arst",
+      "workflow_module_instance_id": "arst",
+      "module_id": "postgres-query-2",
+      "description": null,
+      "properties": {
+        "query": "SELECT * FROM public.mytable",
+        "postgres_connection": {
+          "connection_name": "My Connection",
+          "connection_app_type": "postgres_heroku",
+          "connection_management_type": "managed"
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arstrst",
+      "workflow_module_instance_id": "arstrst",
+      "module_id": "queues-insert_data-2",
+      "description": null,
+      "properties": {
+        "data": [],
+        "workflows_app_queue_id": "c25a5f70-1af2-4e84-9228-17af0366d95c"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "asrt",
+      "workflow_module_instance_id": "asrt",
+      "module_id": "variables-delete_workspace_variable-1",
+      "description": null,
+      "properties": {
+        "variable_name": "old variable"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "rtsg",
+      "workflow_module_instance_id": "rtsg",
+      "module_id": "variables-delete_workspace_variable-1",
+      "description": null,
+      "properties": {
+        "variable_name": "old variable"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arstr",
+      "workflow_module_instance_id": "arstr",
+      "module_id": "variables-delete_workspace_variable-1",
+      "description": null,
+      "properties": {
+        "variable_name": "new value"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arstrss",
+      "workflow_module_instance_id": "arstrss",
+      "module_id": "airtable-list_records-1",
+      "description": null,
+      "properties": {
+        "base": {
+          "id": "appUwEGPZChjXXfNm",
+          "label": "rs"
+        },
+        "sort": "[\n    { \"field\": \"field_id1\", \"direction\": \"asc\" }, \n    { \"field\": \"field_id2\", \"direction\": \"desc\" }\n]",
+        "table": {
+          "id": "tblLcyj7ipN1A8W4p",
+          "label": "Table 2"
+        },
+        "fields": "[\n    \"field_id1\",\n    \"field_id2\"\n]",
+        "page_size": 100,
+        "max_records": 1000,
+        "additional_fields": "{\n    \"view\": \"grid view\" ,\n    \"cellFormat\": \"markdown\" \n}"
+      },
+      "connections": [
+        {
+          "connection_name": "Airtable - Silyas",
+          "connection_app_type": "airtable",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "bpf",
+      "workflow_module_instance_id": "bpf",
+      "module_id": "hubspot-archive_records_standard_objects-3",
+      "description": null,
+      "properties": {
+        "records": "[\n  \"1\",\n  \"2\",\n  \"3\"\n]",
+        "object_type": {
+          "id": "emails",
+          "label": "Emails"
+        }
+      },
+      "connections": [
+        {
+          "connection_name": "Hubspot Connection",
+          "connection_app_type": "hubspot",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arstss",
+      "workflow_module_instance_id": "arstss",
+      "module_id": "slack-send_message_channel-1",
+      "description": null,
+      "properties": {
+        "channel": {
+          "id": "C03RYK81GP8",
+          "label": "#design"
+        },
+        "send_as": {
+          "id": "U078F9YHB3J",
+          "label": "Silyas Bieri"
+        }
+      },
+      "connections": [
+        {
+          "connection_name": "My Connectionxxxx",
+          "connection_app_type": "slack",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arstarst",
+      "workflow_module_instance_id": "arstarst",
+      "module_id": "hubspot-search_records_standard_objects-3",
+      "description": null,
+      "properties": {
+        "after": "0",
+        "limit": 100,
+        "sorts": "[\n  {\n    \"propertyName\": \"createdate\",\n    \"direction\": \"DESCENDING\"\n  }\n]",
+        "properties": "[\n  \"firstname\",\n  \"lastname\",\n  \"email\"\n]",
+        "object_type": {
+          "id": "contacts",
+          "label": "Contacts"
+        },
+        "filterGroups": "[\n  {\n    \"filters\": [\n      {\n        \"propertyName\": \"lastname\",\n        \"operator\": \"EQ\",\n        \"value\": \"Smith\"\n      }\n    ]\n  }\n]"
+      },
+      "connections": [
+        {
+          "connection_name": "Hubspot Connection",
+          "connection_app_type": "hubspot",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arst"
+      },
+      "edge_id": "input-cf269fba-8068-47cb-9d42-b7bbf4f96177"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arstrst"
+      },
+      "edge_id": "input-f8e4d201-3e6d-4f48-96e9-b0549f5657c9"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "asrt"
+      },
+      "edge_id": "input-e31aee8b-3fc2-435d-9178-718b47d7364a"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "rtsg"
+      },
+      "edge_id": "input-6c5c0b8b-b07d-4693-956d-7ba11cfe5094"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "rtsg"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arstr"
+      },
+      "edge_id": "rtsg-c61142df-6c4f-4667-8936-8daa79998f3d"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arstrss"
+      },
+      "edge_id": "input-647a1d30-218b-472f-92c1-09d4bd91882b"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "bpf"
+      },
+      "edge_id": "input-7f3c5e00-d319-4905-b92f-d8ad06a93c0f"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "rtsg"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arstarst"
+      },
+      "edge_id": "rtsg-3b95a85b-32b3-49f4-89dc-91b3e542065a"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "bpf"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arstss"
+      },
+      "edge_id": "edge_bpf-arstss-output-input"
+    }
+  ]
+}

@@ -1,1 +1,67 @@
-{"workflow_execution_timeout":300,"workflow_module_execution_timeout":300,"return_workflow_module_instance_ids":[],"modules":[{"name":"Input","workflow_module_instance_id":"input","module_id":"system-input-1","description":null,"properties":{},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null},{"name":"POST Trigger","workflow_module_instance_id":"post_trigger","module_id":"system-webhook_trigger-1","description":null,"properties":{"body":{"data":[],"allow_extra_fields":true},"method":"POST","headers":{"data":[{"key":"x","type":"number","required":true}],"allow_extra_fields":true},"api_keys":[],"request_type":"async","default_response":"","query_parameters":{"data":[],"allow_extra_fields":true}},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null}],"edges":[{"source":{"handle_id":null,"workflow_module_instance_id":"post_trigger"},"target":{"handle_id":null,"workflow_module_instance_id":"input"},"edge_id":"input-post_trigger"}]}
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [
+            {
+              "key": "x",
+              "type": "number",
+              "required": true
+            }
+          ],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    }
+  ]
+}

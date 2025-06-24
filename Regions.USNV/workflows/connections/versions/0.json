@@ -1,0 +1,223 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": null,
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Archive Hubspot Records",
+      "workflow_module_instance_id": "archive_hubspot_records",
+      "module_id": "hubspot-archive_records_standard_objects-3",
+      "description": null,
+      "properties": {
+        "records": "[\n  \"1\",\n  \"2\",\n  \"3\"\n]",
+        "object_type": {
+          "id": "communications",
+          "label": "Communications"
+        }
+      },
+      "connections": [
+        {
+          "connection_name": "My Test Hubspot Connection",
+          "connection_app_type": "hubspot",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "patches": {
+          "properties.options.properties.object_type.enum": [
+            {
+              "id": "appointments",
+              "label": "Appointments"
+            },
+            {
+              "id": "calls",
+              "label": "Calls"
+            },
+            {
+              "id": "commerce_payments",
+              "label": "Commerce Payments"
+            },
+            {
+              "id": "communications",
+              "label": "Communications"
+            },
+            {
+              "id": "companies",
+              "label": "Companies"
+            },
+            {
+              "id": "contacts",
+              "label": "Contacts"
+            },
+            {
+              "id": "Courses",
+              "label": "Courses"
+            },
+            {
+              "id": "deals",
+              "label": "Deals"
+            },
+            {
+              "id": "emails",
+              "label": "Emails"
+            },
+            {
+              "id": "goal_targets",
+              "label": "Goal Targets"
+            },
+            {
+              "id": "invoices",
+              "label": "Invoices"
+            },
+            {
+              "id": "line_items",
+              "label": "Line Items"
+            },
+            {
+              "id": "listings",
+              "label": "Listings"
+            },
+            {
+              "id": "meetings",
+              "label": "Meetings"
+            },
+            {
+              "id": "notes",
+              "label": "Notes"
+            },
+            {
+              "id": "postal_mail",
+              "label": "Postal Mail"
+            },
+            {
+              "id": "products",
+              "label": "Products"
+            },
+            {
+              "id": "quotes",
+              "label": "Quotes"
+            },
+            {
+              "id": "services",
+              "label": "Services"
+            },
+            {
+              "id": "subscriptions",
+              "label": "Subscriptions"
+            },
+            {
+              "id": "tasks",
+              "label": "Tasks"
+            },
+            {
+              "id": "tickets",
+              "label": "Tickets"
+            }
+          ]
+        },
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arsttx",
+      "workflow_module_instance_id": "arsttx",
+      "module_id": "hubspot-archive_records_standard_objects-2",
+      "description": null,
+      "properties": {
+        "records": "[\n  \"1\",\n  \"2\",\n  \"3\"\n]",
+        "object_type": {
+          "id": "commerce_payments",
+          "label": "Commerce Payments"
+        }
+      },
+      "connections": [
+        {
+          "connection_name": "My Hubspot Connection",
+          "connection_app_type": "hubspot",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arsttx"
+      },
+      "edge_id": "xy-edge__inputoutput-arstinput"
+    },
+    {
+      "source": {
+        "handle_id": "error",
+        "workflow_module_instance_id": "arsttx"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "archive_hubspot_records"
+      },
+      "edge_id": "edge_arst-archive_hubspot_records-error-input"
+    }
+  ]
+}

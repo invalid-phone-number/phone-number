@@ -1,0 +1,303 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": null,
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "cur parsing",
+      "workflow_module_instance_id": "cur_parsing",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "http://localhost:2006/workspaces/2232/workflows/7f93da11-26e2-469a-9efb-240a5bc8058d:latest_draft/triggers/post_trigger/run_wait_result",
+        "body": "{\"87767676786778678687878768\":\"value\",\"ggg\":\"87767676786778678687878768\"}",
+        "header": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "cookies": [],
+        "other_parameters": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "For Loop Select",
+      "workflow_module_instance_id": "for_loop_select",
+      "module_id": "system-for_loop-1",
+      "description": null,
+      "properties": {
+        "list": [
+          "1",
+          "2"
+        ],
+        "break_on_error": true
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Start",
+      "workflow_module_instance_id": "for_loop_select_start",
+      "module_id": "system-for_loop_input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "layout": {
+          "group_module_instance_id": "for_loop_select"
+        },
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "End",
+      "workflow_module_instance_id": "for_loop_select_end",
+      "module_id": "system-for_loop_output-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "layout": {
+          "group_module_instance_id": "for_loop_select"
+        },
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "aggregate",
+      "workflow_module_instance_id": "aggregate",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{\n    \"start\": {{ for_loop_select_start }}\n}"
+      },
+      "connections": [],
+      "module_options": {
+        "layout": {
+          "group_module_instance_id": "for_loop_select"
+        },
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "xxx",
+      "workflow_module_instance_id": "xxx",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{\n    \"arst\": \"\",\n    \"arst\": \"32\"\n}"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "xxxx",
+      "workflow_module_instance_id": "xxxx",
+      "module_id": "system-concatenate_lists-1",
+      "description": null,
+      "properties": {
+        "lists": "[\n  a\",\n  \"b\",\n  \"{{ input }}\",\n  \"c\",\n  \"a\"\n]",
+        "recursive": false
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "aaaa",
+      "workflow_module_instance_id": "aaaa",
+      "module_id": "system-concatenate_lists-1",
+      "description": null,
+      "properties": {
+        "lists": "[\"x]",
+        "recursive": false
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "aaaas",
+      "workflow_module_instance_id": "aaaas",
+      "module_id": "code-execution-javascript_code_execution-1",
+      "description": null,
+      "properties": {
+        "script": "function main(WORKFLOW_CONTEXT) {\r\n    return WORKFLOW_CONTEXT[\"ars\"]\r\n}",
+        "context": [
+          {
+            "name": "ars",
+            "value": "{{ input.body.my_int }}"
+          }
+        ]
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "cur_parsing"
+      },
+      "edge_id": "input-1243351a-1894-4098-936c-83111b6288aa"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "for_loop_select"
+      },
+      "edge_id": "input-7ae8f18b-7d88-4cbf-9c72-a1720e0cc81a"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "for_loop_select_start"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "aggregate"
+      },
+      "edge_id": "for_loop_select_start-d58f61b2-1c48-4881-90d2-453ef7a04e8b"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "aggregate"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "for_loop_select_end"
+      },
+      "edge_id": "edge_aggregate-for_loop_select_end-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "xxx"
+      },
+      "edge_id": "input-3068baf7-4d84-4261-8154-d1299a57aee7"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "xxxx"
+      },
+      "edge_id": "edge_input-xxxx-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "aaaa"
+      },
+      "edge_id": "input-b7eacb6e-ebb9-484a-ac37-d97cd9f7e765"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "aaaas"
+      },
+      "edge_id": "input-526bc3e0-4a0f-4197-83a7-451e153edb52"
+    }
+  ]
+}

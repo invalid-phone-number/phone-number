@@ -1,1 +1,177 @@
-{"workflow_execution_timeout":300,"workflow_module_execution_timeout":300,"return_workflow_module_instance_ids":["is_empty","is_not_empty"],"modules":[{"name":"Input","workflow_module_instance_id":"input","module_id":"system-input-1","description":null,"properties":{},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null},{"name":"POST Trigger","workflow_module_instance_id":"post_trigger","module_id":"system-webhook_trigger-1","description":null,"properties":{"body":{"data":[],"allow_extra_fields":true},"method":"POST","headers":{"data":[],"allow_extra_fields":true},"api_keys":[],"request_type":"sync","default_response":"","query_parameters":{"data":[],"allow_extra_fields":true}},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null},{"name":"If Empty","workflow_module_instance_id":"if_empty","module_id":"system-if_else-1","description":null,"properties":{"conditions":[{"condition":{"id":"87f826bc-ae8d-47bc-ade1-b27ad694e0ab","type":"group","value":[{"id":"initial-condition-value-id","type":"value","value":"10","operator":"is greater than","value_type":"json","target_value":"12","target_value_type":"number"}]},"handle_id":"condition_a","condition_response":""},{"condition":{"id":"9eba530f-77a9-42ef-9fe4-fdb7ef5218b9","type":"group","value":[{"id":"e9f3ff0c-e4f3-4229-b9d9-13d0694565d7","type":"value","value":"rs","operator":"is null","value_type":"array","target_value_type":"string"}]},"handle_id":"condition_c","condition_response":""}]},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null},{"name":"is_empty","workflow_module_instance_id":"is_empty","module_id":"system-data_aggregator-1","description":null,"properties":{"data":"is empty"},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null},{"name":"is_not_empty","workflow_module_instance_id":"is_not_empty","module_id":"system-data_aggregator-1","description":null,"properties":{"data":"is not empty"},"connections":[],"module_options":{"enable_error_handling":false},"error_handling_strategy":null}],"edges":[{"source":{"handle_id":null,"workflow_module_instance_id":"post_trigger"},"target":{"handle_id":null,"workflow_module_instance_id":"input"},"edge_id":"input-post_trigger"},{"source":{"handle_id":null,"workflow_module_instance_id":"input"},"target":{"handle_id":null,"workflow_module_instance_id":"if_empty"},"edge_id":"input-72110531-0156-4908-9669-0198d771dc23"},{"source":{"handle_id":"condition_a","workflow_module_instance_id":"if_empty"},"target":{"handle_id":null,"workflow_module_instance_id":"is_empty"},"edge_id":"edge_if_empty-is_empty-condition_a-input"},{"source":{"handle_id":"else","workflow_module_instance_id":"if_empty"},"target":{"handle_id":null,"workflow_module_instance_id":"is_not_empty"},"edge_id":"edge_if_empty-is_not_empty-condition_b-input"}]}
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [
+    "is_empty",
+    "is_not_empty"
+  ],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "sync",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "If Empty",
+      "workflow_module_instance_id": "if_empty",
+      "module_id": "system-if_else-1",
+      "description": null,
+      "properties": {
+        "conditions": [
+          {
+            "condition": {
+              "id": "87f826bc-ae8d-47bc-ade1-b27ad694e0ab",
+              "type": "group",
+              "value": [
+                {
+                  "id": "initial-condition-value-id",
+                  "type": "value",
+                  "value": "10",
+                  "operator": "is greater than",
+                  "value_type": "json",
+                  "target_value": "12",
+                  "target_value_type": "number"
+                }
+              ]
+            },
+            "handle_id": "condition_a",
+            "condition_response": ""
+          },
+          {
+            "condition": {
+              "id": "9eba530f-77a9-42ef-9fe4-fdb7ef5218b9",
+              "type": "group",
+              "value": [
+                {
+                  "id": "e9f3ff0c-e4f3-4229-b9d9-13d0694565d7",
+                  "type": "value",
+                  "value": "rs",
+                  "operator": "is null",
+                  "value_type": "array",
+                  "target_value_type": "string"
+                }
+              ]
+            },
+            "handle_id": "condition_c",
+            "condition_response": ""
+          }
+        ]
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "is_empty",
+      "workflow_module_instance_id": "is_empty",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "is empty"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "is_not_empty",
+      "workflow_module_instance_id": "is_not_empty",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "is not empty"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "if_empty"
+      },
+      "edge_id": "input-72110531-0156-4908-9669-0198d771dc23"
+    },
+    {
+      "source": {
+        "handle_id": "condition_a",
+        "workflow_module_instance_id": "if_empty"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "is_empty"
+      },
+      "edge_id": "edge_if_empty-is_empty-condition_a-input"
+    },
+    {
+      "source": {
+        "handle_id": "else",
+        "workflow_module_instance_id": "if_empty"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "is_not_empty"
+      },
+      "edge_id": "edge_if_empty-is_not_empty-condition_b-input"
+    }
+  ]
+}

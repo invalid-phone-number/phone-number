@@ -1,0 +1,353 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": null,
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Send Docusign",
+      "workflow_module_instance_id": "test_request",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "zo.com",
+        "header": [],
+        "method": "POST",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Send Confirmation",
+      "workflow_module_instance_id": "print",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{{ docusign_pdf }}\n\nIF Exists:[Assigned Agent]"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "print2",
+      "workflow_module_instance_id": "print2",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{{ test_request2 }}"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Assign to Customer",
+      "workflow_module_instance_id": "test_request2",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "zo.com",
+        "header": [],
+        "method": "POST",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Success Req 1",
+      "workflow_module_instance_id": "not_failing",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "http://www.google.com",
+        "header": [],
+        "method": "GET",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "patches": {},
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "print3",
+      "workflow_module_instance_id": "print3",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{{ not_failing }}"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Complex Failing",
+      "workflow_module_instance_id": "complex_failing",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "zo.com",
+        "header": [],
+        "method": "POST",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": true
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "print4",
+      "workflow_module_instance_id": "print4",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "print5",
+      "workflow_module_instance_id": "print5",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Complex Failing2",
+      "workflow_module_instance_id": "complex_failing2",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "zo.com",
+        "header": [],
+        "method": "POST",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "conditional",
+      "workflow_module_instance_id": "conditional",
+      "module_id": "system-if_else-1",
+      "description": "if a:\n  a true: return\nelif b:\n  b true: return",
+      "properties": {
+        "conditions": [
+          {
+            "condition": {
+              "id": "initial-condition-group-id",
+              "type": "group",
+              "value": [
+                {
+                  "id": "initial-condition-value-id",
+                  "type": "value",
+                  "value": "has docusign",
+                  "operator": "is not null"
+                }
+              ]
+            },
+            "handle_id": "1c06ca2c-8891-41b7-bf0c-10cbdf4c1f41",
+            "condition_response": ""
+          },
+          {
+            "condition": {
+              "id": "a0469010-bc4d-43f8-b6a1-3ca79c52e397",
+              "type": "group",
+              "value": [
+                {
+                  "id": "dc70b6f9-e92f-47e1-b53e-d9c63661ef53",
+                  "type": "value",
+                  "value": "has agent",
+                  "operator": "is not null"
+                }
+              ]
+            },
+            "handle_id": "576e15f9-6023-4ed5-a7e0-ec7023f41cd5",
+            "condition_response": ""
+          }
+        ]
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test_request"
+      },
+      "edge_id": "input-043d1aa5-adf6-44f5-a8e4-87e008957ef2"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test_request2"
+      },
+      "edge_id": "input-18f5b5e5-01e9-4084-8511-6727083b1a82"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "not_failing"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "print3"
+      },
+      "edge_id": "not_failing-09c1147c-2348-42b1-8d0d-48e071f27fa8"
+    },
+    {
+      "source": {
+        "handle_id": "error",
+        "workflow_module_instance_id": "not_failing"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "print3"
+      },
+      "edge_id": "edge_not_failing-print3-error-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "complex_failing"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "print4"
+      },
+      "edge_id": "complex_failing-22c4830e-491f-463f-860b-91d2f2f069cc"
+    },
+    {
+      "source": {
+        "handle_id": "error",
+        "workflow_module_instance_id": "complex_failing"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "complex_failing2"
+      },
+      "edge_id": "edge_complex_failing-complex_failing2-error-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "complex_failing2"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "print5"
+      },
+      "edge_id": "edge_complex_failing2-print5-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "test_request"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "print"
+      },
+      "edge_id": "edge_test_request-print-output-input"
+    }
+  ]
+}

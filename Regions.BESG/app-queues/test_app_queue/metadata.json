@@ -1,0 +1,15 @@
+{
+  "workflows_app_queue_resource_id": "test_app_queue",
+  "workflows_app_queue_name": "test app queue",
+  "workflows_app_queue_status": "running",
+  "consumer_workflow_id": "58c40fea-91ec-4a6e-ace2-0a333503e75f",
+  "consumer_workflow_module_instance_id": "get",
+  "flush_batch_size": 100,
+  "flush_record_max_age": 60,
+  "flush_rate_limit_max_flush_count": 0,
+  "flush_rate_limit_time_window": 0,
+  "flush_strategy": "lifo",
+  "options": null,
+  "created_by": 2152,
+  "created_time": "2025-06-03T14:04:51.531485"
+}

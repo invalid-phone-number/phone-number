@@ -1,0 +1,267 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": null,
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "POST",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "async",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "aaaa",
+      "workflow_module_instance_id": "aaaa",
+      "module_id": "variables-update_workspace_variable-1",
+      "description": null,
+      "properties": {
+        "data": "{{ a }}",
+        "variable_name": "Stupid Variable workaaa"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "a",
+      "workflow_module_instance_id": "a",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "a"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "b",
+      "workflow_module_instance_id": "b",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "b"
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arst",
+      "workflow_module_instance_id": "arst",
+      "module_id": "postgres-query-2",
+      "description": null,
+      "properties": {
+        "query": "SELECT * FROM public.mytable",
+        "postgres_connection": {
+          "connection_name": "My Postgres Connection",
+          "connection_app_type": "postgres_heroku",
+          "connection_management_type": "managed"
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arstarstarstarstarsarstarst",
+      "workflow_module_instance_id": "arstarstarstarstarsarstarst",
+      "module_id": "slack-send_message_channel-1",
+      "description": "arstarstarstarstsratarstrsatr",
+      "properties": {
+        "channel": {
+          "id": "C03PLHH6FCY",
+          "label": "#random"
+        },
+        "message": "ciao",
+        "send_as": {
+          "id": "U078F9YHB3J",
+          "label": "Silyas Bieri"
+        }
+      },
+      "connections": [
+        {
+          "connection_name": "lol slack",
+          "connection_app_type": "slack",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arst",
+      "workflow_module_instance_id": "arst",
+      "module_id": "postgres-query-2",
+      "description": null,
+      "properties": {
+        "query": "SELECT * FROM public.mytable",
+        "postgres_connection": {
+          "connection_name": "My Postgres Connection",
+          "connection_app_type": "postgres_heroku",
+          "connection_management_type": "managed"
+        }
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "srtg",
+      "workflow_module_instance_id": "srtg",
+      "module_id": "airtable-delete_records-1",
+      "description": null,
+      "properties": {
+        "records": "[\n    \"record_id1\",\n    \"record_id2\"\n]"
+      },
+      "connections": [
+        {
+          "connection_name": "Airtable",
+          "connection_app_type": "airtable",
+          "connection_management_type": "managed"
+        }
+      ],
+      "module_options": {
+        "patches": {}
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "a"
+      },
+      "edge_id": "input-5e5c8db9-5e7b-4f71-9bb2-eed5b2955576"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "b"
+      },
+      "edge_id": "input-4e34e055-26d1-4fc2-9cd2-8cd644f98c91"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "a"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "aaaa"
+      },
+      "edge_id": "edge_a-aaaa-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "b"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "aaaa"
+      },
+      "edge_id": "edge_b-aaaa-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "a"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arst"
+      },
+      "edge_id": "a-e695d316-d355-4fd8-85d0-23fe4d1d64b9"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "a"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arstarstarstarstarsarstarst"
+      },
+      "edge_id": "a-a379eae2-d2d7-447a-ab51-9f45994880b8"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "a"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "srtg"
+      },
+      "edge_id": "a-04dcde84-7218-4de1-a0de-cf862d08c49b"
+    }
+  ]
+}

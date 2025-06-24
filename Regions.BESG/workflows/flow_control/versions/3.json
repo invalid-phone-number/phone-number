@@ -1,0 +1,232 @@
+{
+  "workflow_execution_timeout": 300,
+  "workflow_module_execution_timeout": 300,
+  "return_workflow_module_instance_ids": [
+    ""
+  ],
+  "modules": [
+    {
+      "name": "Input",
+      "workflow_module_instance_id": "input",
+      "module_id": "system-input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {},
+      "error_handling_strategy": null
+    },
+    {
+      "name": "POST Trigger",
+      "workflow_module_instance_id": "post_trigger",
+      "module_id": "system-webhook_trigger-1",
+      "description": null,
+      "properties": {
+        "body": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "method": "GET",
+        "headers": {
+          "data": [],
+          "allow_extra_fields": true
+        },
+        "api_keys": [],
+        "request_type": "sync",
+        "default_response": "",
+        "query_parameters": {
+          "data": [],
+          "allow_extra_fields": true
+        }
+      },
+      "connections": [],
+      "module_options": {},
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arst",
+      "workflow_module_instance_id": "arst",
+      "module_id": "system-data_aggregator-1",
+      "description": null,
+      "properties": {
+        "data": "{\n    \"hello\": \"world\"\n}"
+      },
+      "connections": [],
+      "module_options": {},
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Gopher",
+      "workflow_module_instance_id": "gopher",
+      "module_id": "system-for_loop-1",
+      "description": null,
+      "properties": {
+        "list": [
+          "hello",
+          "world"
+        ],
+        "break_on_error": true
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "Start",
+      "workflow_module_instance_id": "gopher_start",
+      "module_id": "system-for_loop_input-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "layout": {
+          "group_module_instance_id": "gopher"
+        }
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "End",
+      "workflow_module_instance_id": "gopher_end",
+      "module_id": "system-for_loop_output-1",
+      "description": null,
+      "properties": {},
+      "connections": [],
+      "module_options": {
+        "layout": {
+          "group_module_instance_id": "gopher"
+        }
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "arsta",
+      "workflow_module_instance_id": "arsta",
+      "module_id": "system-http_requests-1",
+      "description": null,
+      "properties": {
+        "url": "https://google.com/",
+        "header": [],
+        "method": "POST",
+        "cookies": [],
+        "query_parameters": []
+      },
+      "connections": [],
+      "module_options": {
+        "patches": {},
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "ttttt",
+      "workflow_module_instance_id": "ttttt",
+      "module_id": "code-execution-javascript_code_execution-1",
+      "description": null,
+      "properties": {
+        "script": "function main(WORKFLOW_CONTEXT) {\r\n    x = {\r\n        \"name\": \"Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\n    \r\n    return x\n}",
+        "context": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    },
+    {
+      "name": "xxxxxx",
+      "workflow_module_instance_id": "xxxxxx",
+      "module_id": "code-execution-python_code_execution-1",
+      "description": null,
+      "properties": {
+        "script": "def main(WORKFLOW_CONTEXT):\r\n    x = {\r\n        \"name\": \"Jane Doe\",\r\n        \"age\": 25,\r\n        \"city\": \"Lausanne\"\r\n    }\r\n    \r\n    return x",
+        "context": []
+      },
+      "connections": [],
+      "module_options": {
+        "enable_error_handling": false
+      },
+      "error_handling_strategy": null
+    }
+  ],
+  "edges": [
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "post_trigger"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "edge_id": "input-post_trigger"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arst"
+      },
+      "edge_id": "input-3d7a4ec5-749a-47ce-9ce3-d72480aae08a"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "input"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "gopher"
+      },
+      "edge_id": "input-77e833a7-e9f3-451e-a289-2e45944f19d2"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "gopher_start"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "gopher_end"
+      },
+      "edge_id": "edge_gopher_start-gopher_end-output-input"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arst"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "arsta"
+      },
+      "edge_id": "arst-13795b33-b4b4-4f6a-9cee-b1d792947afc"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "gopher"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "ttttt"
+      },
+      "edge_id": "gopher-9c1d1035-5389-46f2-905f-486e9f8d7ca9"
+    },
+    {
+      "source": {
+        "handle_id": null,
+        "workflow_module_instance_id": "gopher"
+      },
+      "target": {
+        "handle_id": null,
+        "workflow_module_instance_id": "xxxxxx"
+      },
+      "edge_id": "gopher-b4595827-7861-41fc-ba5f-fcdeee63bd4b"
+    }
+  ]
+}
