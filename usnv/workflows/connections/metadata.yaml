@@ -1,1 +1,3 @@
-{}
+is_shared_with_workspace: false
+workflow_name: Connections
+workflow_status: running

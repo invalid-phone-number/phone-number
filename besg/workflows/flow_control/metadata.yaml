@@ -1,1 +1,3 @@
-{}
+is_shared_with_workspace: false
+workflow_name: Flow Control
+workflow_status: running

@@ -1,1 +1,3 @@
-{}
+is_shared_with_workspace: true
+workflow_name: nex workflow3
+workflow_status: running

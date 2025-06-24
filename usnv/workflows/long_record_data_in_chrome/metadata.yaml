@@ -1,1 +1,3 @@
-{}
+is_shared_with_workspace: true
+workflow_name: Long Record Data in Chrome
+workflow_status: running

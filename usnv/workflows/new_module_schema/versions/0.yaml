@@ -97,15 +97,12 @@ modules:
     conditions:
     - condition:
         id: 138a7f71-2588-4813-8815-3fcc43cc27e7
-        type: !!python/object/apply:workflows_schemas.models.workflows_versions.workflow_schema_module_condition.WorkflowModuleConditionType
-        - group
+        type: group
         value:
         - id: e30f2167-895f-4bfd-b533-938bdddc275c
-          operator: !!python/object/apply:workflows_schemas.models.workflows_versions.workflow_schema_module_condition.WorkflowModuleConditionOperatorType
-          - is not null
+          operator: is not null
           target_value: null
-          type: !!python/object/apply:workflows_schemas.models.workflows_versions.workflow_schema_module_condition.WorkflowModuleConditionType
-          - value
+          type: value
           value: arstrst
       retry_policy:
         retry_count: 0

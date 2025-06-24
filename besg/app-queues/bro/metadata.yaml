@@ -4,8 +4,7 @@ flush_batch_size: 1000
 flush_rate_limit_max_flush_count: 10
 flush_rate_limit_time_window: 1
 flush_record_max_age: 60
-flush_strategy: !!python/object/apply:workflows_schemas.models.app_queues.app_queue_flush_strategy.AppQueueFlushStrategy
-- fifo
+flush_strategy: fifo
 options: null
-workflows_app_queue_status: !!python/object/apply:workflows_schemas.models.app_queues.app_queue_status.AppQueueStatus
-- running
+workflows_app_queue_name: bro
+workflows_app_queue_status: running

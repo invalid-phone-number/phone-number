@@ -1,1 +1,3 @@
-{}
+is_shared_with_workspace: true
+workflow_name: Test App Queue Data Conversion
+workflow_status: running

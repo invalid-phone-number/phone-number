@@ -1,1 +1,3 @@
-{}
+is_shared_with_workspace: true
+workflow_name: Queue Parsing
+workflow_status: running

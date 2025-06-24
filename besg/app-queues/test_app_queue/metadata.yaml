@@ -4,8 +4,7 @@ flush_batch_size: 100
 flush_rate_limit_max_flush_count: 0
 flush_rate_limit_time_window: 0
 flush_record_max_age: 60
-flush_strategy: !!python/object/apply:workflows_schemas.models.app_queues.app_queue_flush_strategy.AppQueueFlushStrategy
-- lifo
+flush_strategy: lifo
 options: null
-workflows_app_queue_status: !!python/object/apply:workflows_schemas.models.app_queues.app_queue_status.AppQueueStatus
-- running
+workflows_app_queue_name: test app queue
+workflows_app_queue_status: running
