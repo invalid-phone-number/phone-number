@@ -1,0 +1,69 @@
+edges:
+- edge_id: input-post_trigger
+  source:
+    handle_id: null
+    workflow_module_instance_id: post_trigger
+  target:
+    handle_id: null
+    workflow_module_instance_id: input
+- edge_id: input-7116ee59-e54f-45fb-9584-83038b7442dc
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: my_phone_number
+modules:
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-input-1
+  module_options:
+    enable_error_handling: false
+  name: Input
+  properties: {}
+  workflow_module_instance_id: input
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-webhook_trigger-1
+  module_options:
+    enable_error_handling: false
+  name: POST Trigger
+  properties:
+    api_keys:
+    - created_at: '2025-07-02 09:49:51'
+      key_name: test_silyas
+      key_value: 6e16958727a75043436bae3860b290df049005461945fa183c3a159592df537b
+    - created_at: '2025-07-02 09:50:41'
+      key_name: test_world
+      key_value: aa2264387fe873aa615137135aa2358ce61bf54938e2767b324944bfa7a6484b
+    - created_at: '2025-07-02 10:03:19'
+      key_name: x
+      key_value: 2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881
+    body:
+      allow_extra_fields: true
+      data: []
+    default_response: ''
+    headers:
+      allow_extra_fields: true
+      data: []
+    method: POST
+    query_parameters:
+      allow_extra_fields: true
+      data: []
+    request_type: async
+  workflow_module_instance_id: post_trigger
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: false
+  name: My Phone Number
+  properties:
+    data: 'phone number: +41 78 693 2427'
+  workflow_module_instance_id: my_phone_number
+return_workflow_module_instance_ids: []
+workflow_execution_timeout: 300
+workflow_module_execution_timeout: 300

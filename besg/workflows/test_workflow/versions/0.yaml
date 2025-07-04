@@ -154,7 +154,7 @@ modules:
   name: filter
   properties:
     break_on_error: true
-    filter_null_values: true
+    filter_null_values_on_output: true
     list:
     - 1
     - 2

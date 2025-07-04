@@ -20,13 +20,6 @@ edges:
   target:
     handle_id: null
     workflow_module_instance_id: test_ssl
-- edge_id: ssl_cert-0c8d0d6e-ba74-4d7a-b0bf-0739bf349956
-  source:
-    handle_id: null
-    workflow_module_instance_id: ssl_cert
-  target:
-    handle_id: null
-    workflow_module_instance_id: catch_fail
 - edge_id: edge_test_ssl-should_return_as_success-output-input
   source:
     handle_id: null
@@ -38,13 +31,6 @@ edges:
   source:
     handle_id: error
     workflow_module_instance_id: catch_invalid
-  target:
-    handle_id: null
-    workflow_module_instance_id: should_return_as_success
-- edge_id: edge_catch_fail-should_return_as_success-error-input
-  source:
-    handle_id: error
-    workflow_module_instance_id: catch_fail
   target:
     handle_id: null
     workflow_module_instance_id: should_return_as_success
@@ -62,20 +48,13 @@ edges:
   target:
     handle_id: null
     workflow_module_instance_id: should_not_be_a_success_2
-- edge_id: edge_catch_fail_start-test_ssl_fail-output-input
+- edge_id: edge_input-catch_invalid-output-input
   source:
     handle_id: null
-    workflow_module_instance_id: catch_fail_start
+    workflow_module_instance_id: input
   target:
     handle_id: null
-    workflow_module_instance_id: test_ssl_fail
-- edge_id: edge_test_ssl_fail-should_not_be_a_success-output-input
-  source:
-    handle_id: null
-    workflow_module_instance_id: test_ssl_fail
-  target:
-    handle_id: null
-    workflow_module_instance_id: should_not_be_a_success
+    workflow_module_instance_id: catch_invalid
 modules:
 - connections: []
   description: null
@@ -339,68 +318,6 @@ modules:
   module_id: system-try_catch-1
   module_options:
     enable_error_handling: true
-  name: Catch FAIL
-  properties: {}
-  workflow_module_instance_id: catch_fail
-- connections: []
-  description: null
-  error_handling_strategy: null
-  module_id: system-try_catch_input-1
-  module_options:
-    enable_error_handling: false
-    layout:
-      group_module_instance_id: catch_fail
-  name: Start
-  properties: {}
-  workflow_module_instance_id: catch_fail_start
-- connections: []
-  description: null
-  error_handling_strategy: null
-  module_id: system-try_catch_output-1
-  module_options:
-    enable_error_handling: false
-    layout:
-      group_module_instance_id: catch_fail
-  name: End
-  properties: {}
-  workflow_module_instance_id: catch_fail_end
-- connections: []
-  description: Fail
-  error_handling_strategy: null
-  module_id: system-http_requests-1
-  module_options:
-    enable_error_handling: false
-    layout:
-      group_module_instance_id: catch_fail
-    patches: {}
-  name: Test SSL FAIL
-  properties:
-    cert: '{{ ssl_cert }}'
-    cookies: []
-    header: []
-    method: GET
-    other_parameters: []
-    query_parameters: []
-    url: https://google.com
-  workflow_module_instance_id: test_ssl_fail
-- connections: []
-  description: SHOULD NOT BE A SUCCESS
-  error_handling_strategy: null
-  module_id: system-stop-1
-  module_options:
-    enable_error_handling: false
-    layout:
-      group_module_instance_id: catch_fail
-  name: SHOULD NOT BE A SUCCESS
-  properties:
-    default_response: Oh no!
-  workflow_module_instance_id: should_not_be_a_success
-- connections: []
-  description: null
-  error_handling_strategy: null
-  module_id: system-try_catch-1
-  module_options:
-    enable_error_handling: true
   name: Catch INVALID
   properties: {}
   workflow_module_instance_id: catch_invalid
@@ -416,17 +333,6 @@ modules:
   properties: {}
   workflow_module_instance_id: catch_invalid_start
 - connections: []
-  description: null
-  error_handling_strategy: null
-  module_id: system-try_catch_output-1
-  module_options:
-    enable_error_handling: false
-    layout:
-      group_module_instance_id: catch_invalid
-  name: End
-  properties: {}
-  workflow_module_instance_id: catch_invalid_end
-- connections: []
   description: Invalid
   error_handling_strategy: null
   module_id: system-http_requests-1
@@ -441,7 +347,6 @@ modules:
     cookies: []
     header: []
     method: GET
-    other_parameters: []
     query_parameters: []
     url: https://www.instructables.com
   workflow_module_instance_id: test_ssl_invalid

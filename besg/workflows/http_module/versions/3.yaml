@@ -13,13 +13,13 @@ edges:
   target:
     handle_id: null
     workflow_module_instance_id: ssl_cert
-- edge_id: edge_ssl_cert-test_ssl-output-input
+- edge_id: edge_ssl_cert-modify_ssl_cert-output-input
   source:
     handle_id: null
     workflow_module_instance_id: ssl_cert
   target:
     handle_id: null
-    workflow_module_instance_id: test_ssl
+    workflow_module_instance_id: modify_ssl_cert
 - edge_id: ssl_cert-0c8d0d6e-ba74-4d7a-b0bf-0739bf349956
   source:
     handle_id: null
@@ -27,13 +27,13 @@ edges:
   target:
     handle_id: null
     workflow_module_instance_id: catch_fail
-- edge_id: edge_test_ssl-should_return_as_success-output-input
+- edge_id: modify_ssl_cert-3a891176-9f7f-4d81-bacf-6a76eebc57e0
   source:
     handle_id: null
-    workflow_module_instance_id: test_ssl
+    workflow_module_instance_id: modify_ssl_cert
   target:
     handle_id: null
-    workflow_module_instance_id: should_return_as_success
+    workflow_module_instance_id: catch_invalid
 - edge_id: edge_catch_invalid-should_return_as_success-error-input
   source:
     handle_id: error
@@ -108,23 +108,6 @@ modules:
       data: []
     request_type: async
   workflow_module_instance_id: post_trigger
-- connections: []
-  description: null
-  error_handling_strategy: null
-  module_id: system-http_requests-1
-  module_options:
-    enable_error_handling: false
-    patches: {}
-  name: Test SSL OK
-  properties:
-    cert: '{{ ssl_cert }}'
-    cookies: []
-    header: []
-    method: GET
-    other_parameters: []
-    query_parameters: []
-    url: https://www.instructables.com
-  workflow_module_instance_id: test_ssl
 - connections: []
   description: null
   error_handling_strategy: null
@@ -336,6 +319,20 @@ modules:
 - connections: []
   description: null
   error_handling_strategy: null
+  module_id: code-execution-python_code_execution-1
+  module_options:
+    enable_error_handling: false
+  name: Modify SSL Cert
+  properties:
+    context:
+    - name: ssl_cert
+      value: '{{ ssl_cert }}'
+    script: "def main(WORKFLOW_CONTEXT):\r\n    return WORKFLOW_CONTEXT[\"ssl_cert\"\
+      ].replace(\"MIIIT\", \"MAIIT\")"
+  workflow_module_instance_id: modify_ssl_cert
+- connections: []
+  description: null
+  error_handling_strategy: null
   module_id: system-try_catch-1
   module_options:
     enable_error_handling: true
@@ -379,7 +376,6 @@ modules:
     cookies: []
     header: []
     method: GET
-    other_parameters: []
     query_parameters: []
     url: https://google.com
   workflow_module_instance_id: test_ssl_fail
@@ -441,7 +437,6 @@ modules:
     cookies: []
     header: []
     method: GET
-    other_parameters: []
     query_parameters: []
     url: https://www.instructables.com
   workflow_module_instance_id: test_ssl_invalid

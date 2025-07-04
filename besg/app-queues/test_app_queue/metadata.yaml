@@ -1,10 +1,10 @@
-consumer_workflow_id: 58c40fea-91ec-4a6e-ace2-0a333503e75f
-consumer_workflow_module_instance_id: get
+consumer_workflow_id: 59a007ee-a9b1-430e-bae3-d513f44eea1d
+consumer_workflow_module_instance_id: get_from
 flush_batch_size: 100
-flush_rate_limit_max_flush_count: 0
-flush_rate_limit_time_window: 0
-flush_record_max_age: 60
-flush_strategy: lifo
+flush_rate_limit_max_flush_count: 1
+flush_rate_limit_time_window: 6000
+flush_record_max_age: 6000
+flush_strategy: fifo
 options: null
 workflows_app_queue_name: test app queue
 workflows_app_queue_status: running

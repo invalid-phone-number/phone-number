@@ -48,6 +48,20 @@ edges:
   target:
     handle_id: null
     workflow_module_instance_id: loop
+- edge_id: input-fe90f615-0ed2-477c-8f77-5ae47b21aaba
+  source:
+    handle_id: null
+    workflow_module_instance_id: input
+  target:
+    handle_id: null
+    workflow_module_instance_id: arssra
+- edge_id: edge_arssra-loop-output-input
+  source:
+    handle_id: null
+    workflow_module_instance_id: arssra
+  target:
+    handle_id: null
+    workflow_module_instance_id: loop
 modules:
 - connections: []
   description: null
@@ -126,7 +140,7 @@ modules:
   name: loop
   properties:
     break_on_error: true
-    filter_null_values: false
+    filter_null_values_on_output: false
     list:
     - x
     - y
@@ -187,6 +201,15 @@ modules:
   properties:
     data: '["one", "two", "three"]'
   workflow_module_instance_id: x
+- connections: []
+  description: null
+  error_handling_strategy: null
+  module_id: system-data_aggregator-1
+  module_options:
+    enable_error_handling: true
+  name: arssra
+  properties: {}
+  workflow_module_instance_id: arssra
 return_workflow_module_instance_ids: []
 workflow_execution_timeout: 300
 workflow_module_execution_timeout: 300
